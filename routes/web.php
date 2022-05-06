@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,13 +20,22 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//Trang người dùng
 Route::get('/', [IndexController::class,'index'])->name('home');
+
+//Shop
+Route::get('/shop', [ShopController::class,'index'])->name('shop');
+
+//Chi tiết san phẩm
+Route::get('/productDetail', [ShopController::class,'ProductDetail'])->name('productDetail');
+
+//Đăng nhập, Đăng ký
 Route::get('/signin',[AuthController::class,'index'])->name('signin');
 Route::post('/register',[AuthController::class,'register'])->name('register');
 Route::post('/login-user',[AuthController::class,'loginUser'])->name('loginUser');
 Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
+//Trang Admin
 Route::prefix('admin')->group(function(){
     Route::get('/',[HomeController::class,'index'])->name('admin.index');
 

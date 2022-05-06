@@ -38,9 +38,10 @@
             <tbody>
                 @foreach ($product_details as $item)
                     <tr>
+                       
                         <td>{{$loop->iteration}}</td>
-                        <td>{{$item->attr_color->value}}</td>
-                        <td>{{$item->attr_size->value}}</td>
+                        <td>{{$item->attr_color->value }}</td>
+                        <td>{{$item->attr_size->value }}</td>
                         <td>{{$item->quantity}}</td>
                         <td>
                             <a href="" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">

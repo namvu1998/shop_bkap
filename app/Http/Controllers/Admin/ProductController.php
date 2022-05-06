@@ -18,9 +18,9 @@ class ProductController extends Controller
     public function index(Request $req){
         try{
         if($req->key == null){
-            $products =  Product::latest()->paginate(3);
+            $products =  Product::latest()->paginate(100);
         }else{
-            $products = Product::where('name', 'like', "%" . $req->key. "%")->latest()->paginate(3);
+            $products = Product::where('name', 'like', "%" . $req->key. "%")->latest()->paginate(100);
         }
         if($req->ajax())
         {

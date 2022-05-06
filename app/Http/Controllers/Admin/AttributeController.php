@@ -10,7 +10,7 @@ class AttributeController extends Controller
 {
     public function index(Request $req){
         try{
-            $attribute =  Attribute::latest()->paginate(3);
+            $attribute =  Attribute::latest()->paginate(10);
         if($req->ajax())
         {
                 return view('admin.attribute.ajax_index',compact('attribute'));
