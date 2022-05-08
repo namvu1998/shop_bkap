@@ -1,11 +1,16 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Admin\AttributeController;
 use App\Http\Controllers\Admin\AttributeValueController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
@@ -26,8 +31,24 @@ Route::get('/', [IndexController::class,'index'])->name('home');
 //Shop
 Route::get('/shop', [ShopController::class,'index'])->name('shop');
 
-//Chi tiết san phẩm
+//Chi tiết sản phẩm
 Route::get('/productDetail', [ShopController::class,'ProductDetail'])->name('productDetail');
+
+//Giỏ hàng
+Route::get('/cart', [CartController::class,'index'])->name('cart');
+
+//Checkout
+Route::get('/checkout', [CheckoutController::class,'index'])->name('checkout');
+
+//blog
+Route::get('/blog', [BlogController::class,'index'])->name('blog');
+Route::get('/detail-blog', [BlogController::class,'detailBlog'])->name('detailBlog');
+
+//about
+Route::get('/about', [AboutController::class,'index'])->name('about');
+
+//contact
+Route::get('/contact', [ContactController::class,'index'])->name('contact');
 
 //Đăng nhập, Đăng ký
 Route::get('/signin',[AuthController::class,'index'])->name('signin');
