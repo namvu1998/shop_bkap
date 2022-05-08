@@ -9,10 +9,6 @@
                 <a  href="{{route('admin.product.createDetail',$id)}}" class="btn btn-sm btn-primary" id="kt_toolbar_primary_button">
                     CreateDetail
                 </a>
-              <form class="d-flex">
-                <input class="form-control me-2" name="key" type="search" placeholder="Search" aria-label="Search">
-                <input class="btn btn-outline-success" value="ok" type="submit">
-              </form>
             </div>
           </nav>
        @if(Session::has('success'))
@@ -40,7 +36,7 @@
                     <tr>
                        
                         <td>{{$loop->iteration}}</td>
-                        <td>{{$item->attr_color->value }}</td>
+                        <td><div style ="width:50px; height:30px; background:{{$item->attr_color->value }}"></div></td>
                         <td>{{$item->attr_size->value }}</td>
                         <td>{{$item->quantity}}</td>
                         <td>
@@ -68,7 +64,6 @@
                                 <!--end::Svg Icon-->
                             </a>
                     </td>
-                    <td class="btn btn-primary "><a class="text-btn" href="">Detail</a></td>
                     </tr>   
                 @endforeach
             </tbody>

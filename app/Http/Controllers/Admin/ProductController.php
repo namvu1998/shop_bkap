@@ -114,7 +114,7 @@ class ProductController extends Controller
     public function detail($id){
         try{
             $product = Product::find($id);
-            $product_details =  Product_variant::latest()->paginate(10);
+            $product_details =  Product_variant::where("product_id",$id)->paginate(10);
             return view('admin.product.detail',compact('id','product_details','product')); 
         }catch(\Throwable $th){
             throw $th;

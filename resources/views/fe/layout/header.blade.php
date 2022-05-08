@@ -12,19 +12,10 @@
                     <div class="main-menu">
                         <ul>
                             <li class="dropdown"><a href="{{route('home')}}">Home</a></li>
-                            <li class="dropdown "><a href="{{route('shop')}}">Shop </a></li>
-                            <li class="dropdown "><a href="#">Blogs <i class="pe-7s-angle-down"></i></a>
-                                <ul class="sub-menu">
-                                    <li><a href="blog-grid.html">Blog Grid Page</a></li>
-                                    <li><a href="blog-grid-left-sidebar.html">Grid Left Sidebar</a></li>
-                                    <li><a href="blog-grid-right-sidebar.html">Grid Right Sidebar</a></li>
-                                    <li><a href="blog-single.html">Blog Single Page</a></li>
-                                    <li><a href="blog-single-left-sidebar.html">Single Left Sidebar</a></li>
-                                    <li><a href="blog-single-right-sidebar.html">Single Right Sidbar</a>
-                                </ul>
-                            </li>
-                            <li><a href="about.html">About us</a></li>
-                            <li><a href="contact.html">Contact us</a></li>
+                            <li class="dropdown "><a href="{{route('shop')}}">Shop</a></li>
+                            <li class="dropdown "><a href="{{route('blog')}}">Blog</a></li>
+                            <li class="dropdown "><a href="{{route('about')}}">About us</a></li>
+                            <li class="dropdown "><a href="{{route('contact')}}">Contact us</a></li>
                         </ul>
                     </div>
                 </div>

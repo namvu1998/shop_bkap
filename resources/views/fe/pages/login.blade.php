@@ -58,15 +58,15 @@
                                     <div class="login-register-form">
                                         <form action="{{route('register')}}" method="post">
                                             @csrf
-                                            <input type="text" name="name" placeholder="Username" />
+                                            <input type="text" name="name" placeholder="Username" value="{{old('name')}}" />
                                             @error('name')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
-                                            <input name="email" placeholder="Email" type="email" />
+                                            <input name="email" placeholder="Email" type="email" value="{{old('email')}}" />
                                             @error('email')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
-                                            <input type="password" name="password" placeholder="Password" /> 
+                                            <input type="password" name="password" placeholder="Password" value="{{old('Password')}}" /> 
                                             @error('password')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror  
