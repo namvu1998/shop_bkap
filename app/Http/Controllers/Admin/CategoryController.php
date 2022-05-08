@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateCategory;
+use App\Http\Requests\UpdateCategory;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -59,7 +60,7 @@ class CategoryController extends Controller
         
     }
 
-    public function update($id, Request $req){
+    public function update($id, UpdateCategory $req){
         try{
             $category = Category::find($id);
             if($category){

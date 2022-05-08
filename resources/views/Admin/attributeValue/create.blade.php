@@ -6,7 +6,7 @@
             @csrf
             <div class="mb-3">
                 <label class="form-label">Tên thuộc tính</label>
-                <select class="form-control" id="inputName" name="name">
+                <select class="form-control" id="inputName" name="name" >
                     <option value="color">Màu sắc</option>
                     <option value="size">Size</option>
                 </select>
@@ -16,10 +16,13 @@
                 <div class="mb-3 value1">
                     <label class="form-label">Giá trị</label>
                     <input type="color" name="value[]" id="" class="form-control v1">
+                    @error('value')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="mb-3 value2" style="display: none;">
                     <label class="form-label">Giá trị</label>
-                    <input type="text" name="" value="" id="" class="form-control v2 @error('value') is-invalid @enderror">
+                    <input type="text" name="" value="" id="" class="form-control v2">
                     @error('value')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -92,6 +95,9 @@
                 <div class="mb-3 value1-new">
                     <label class="form-label">Giá trị</label>
                     <input type="color" name="value[]" id="" class="form-control v1">
+                    @error('value')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 `
          }

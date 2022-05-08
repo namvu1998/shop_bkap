@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateCategory extends FormRequest
+class CreateAttr extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,18 +24,15 @@ class CreateCategory extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:categories',
-            'status' => 'required',
+            'value' => 'required|unique:attributes',
         ];
     }
 
     public function messages()
     {
         return [
-            'name.required' => 'Tên không được bỏ chống.',
-            'name.unique' => 'Tên này đã sử dụng.',
-            'status.required' => 'Trạng thái không được để chống',
+            'value.required' => 'Giá trị không được bỏ chống.',
+            'value.unique' => 'Giá trị này đã sử dụng.',
         ];
     }
-
 }

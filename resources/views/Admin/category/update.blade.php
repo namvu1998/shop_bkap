@@ -11,7 +11,10 @@
         <div class="mb-3">
             <label for="" class="form-label" >Name</label>
             <input type="text" value="{{$category->name}}"
-            class="form-control" name="name" id="" aria-describedby="helpId" placeholder="">
+            class="form-control" name="name" id="" aria-describedby="helpId" placeholder="" value="{{old('name')}}">
+            @error('name')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
             <small id="helpId" class="form-text text-muted">Help text</small>
         </div>
 

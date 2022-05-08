@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateAttr;
+use App\Http\Requests\UpdateAttr;
 use App\Models\Attribute;
 use App\Models\AttributeValue;
 use Illuminate\Http\Request;
@@ -32,7 +34,7 @@ class AttributeValueController extends Controller
         }
     }
 
-    public function store(Request $req){
+    public function store(CreateAttr $req){
         try{
             foreach ($req->value as $value){
                 Attribute::create([
@@ -56,7 +58,7 @@ class AttributeValueController extends Controller
         
     }
 
-    public function update($id, Request $req){
+    public function update($id,UpdateAttr $req){
         try{
             Attribute::find($id)->update($req->all());
             return redirect()->route('admin.attributeValue.index');
