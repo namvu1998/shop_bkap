@@ -71,7 +71,7 @@ class ProductController extends Controller
                 $files = $req->file('files');
                 foreach($files as $value){
                         $fileNames = $value->getClientOriginalName();
-                        $value->move('uploads2',$fileNames);
+                        $value->move('uploads',$fileNames);
                         $img_product= Product_img::create([
                             'product_id'=>$product->id,
                             'images'=>$fileNames,
@@ -114,7 +114,7 @@ class ProductController extends Controller
     public function detail($id){
         try{
             $product = Product::find($id);
-            $product_details =  Product_variant::where("product_id",$id)->paginate(10);
+            $product_details = Product_variant::where("product_id",$id)->paginate(10);
             return view('admin.product.detail',compact('id','product_details','product')); 
         }catch(\Throwable $th){
             throw $th;

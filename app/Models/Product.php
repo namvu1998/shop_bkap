@@ -21,8 +21,11 @@ class Product extends Model
         'shoe_code',
         'status'
     ];
-
-    public function product_variants(){
-        return $this->belongsTo(product_variant::class, 'product_id','id_color','id_size');
+    public function proImg(){
+        return $this->hasMany(Product_img::class);
     }
+    public function proV(){
+        return $this->hasMany(Product_variant::class);
+    }
+    
 }

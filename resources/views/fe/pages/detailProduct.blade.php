@@ -28,41 +28,30 @@
                 <div class="swiper-container zoom-top">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide zoom-image-hover">
-                            <img class="img-responsive m-auto" src="assets/images/product-image/zoom-image/1.jpg"
+                            <img class="img-responsive m-auto" src="{{url('uploads')}}/{{$product->image}}"
                                 alt="">
                         </div>
-                        <div class="swiper-slide zoom-image-hover">
-                            <img class="img-responsive m-auto" src="assets/images/product-image/zoom-image/2.jpg"
-                                alt="">
-                        </div>
-                        <div class="swiper-slide zoom-image-hover">
-                            <img class="img-responsive m-auto" src="assets/images/product-image/zoom-image/3.jpg"
-                                alt="">
-                        </div>
-                        <div class="swiper-slide zoom-image-hover">
-                            <img class="img-responsive m-auto" src="assets/images/product-image/zoom-image/4.jpg"
-                                alt="">
-                        </div>
+                        @foreach($product->proImg as $item)
+                            <div class="swiper-slide zoom-image-hover">
+                                <img class="img-responsive m-auto" src="{{url('uploads')}}/{{$item->images}}"
+                                    alt="">
+                            </div>
+                        @endforeach   
                     </div>
                 </div>
                 <div class="swiper-container zoom-thumbs mt-3 mb-3">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <img class="img-responsive m-auto" src="assets/images/product-image/small-image/1.jpg"
+                            <img class="img-responsive m-auto" src="{{url('uploads')}}/{{$product->image}}"
                                 alt="">
                         </div>
-                        <div class="swiper-slide">
-                            <img class="img-responsive m-auto" src="assets/images/product-image/small-image/2.jpg"
-                                alt="">
-                        </div>
-                        <div class="swiper-slide">
-                            <img class="img-responsive m-auto" src="assets/images/product-image/small-image/3.jpg"
-                                alt="">
-                        </div>
-                        <div class="swiper-slide">
-                            <img class="img-responsive m-auto" src="assets/images/product-image/small-image/4.jpg"
-                                alt="">
-                        </div>
+                        @foreach($product->proImg as $item)
+                            <div class="swiper-slide">
+                                <img class="img-responsive m-auto" src="{{url('uploads')}}/{{$item->images}}"
+                                    alt="">
+                            </div>
+                        @endforeach
+                        
                     </div>
                 </div>
             </div>
@@ -71,7 +60,8 @@
                     <h2>Ardene Microfiber Tights</h2>
                     <div class="pricing-meta">
                         <ul>
-                            <li class="old-price not-cut">$18.90</li>
+                            <li class="old-price not-cut">{{$product->price}} đ</li>
+                            <li class="old-price not-cut">{{$product->sale_price}} %</li>
                         </ul>
                     </div>
                     <div class="pro-details-rating-wrap">
@@ -88,10 +78,9 @@
                         <span>Color</span>
                         <div class="pro-details-color">
                             <ul>
-                                <li><a class="active-color yellow" href="#"></a></li>
-                                <li><a class="black" href="#"></a></li>
-                                <li><a class="red" href="#"></a></li>
-                                <li><a class="pink" href="#"></a></li>
+                                @foreach ($checkColor as $item)
+                                    <li><a class=" " href="#" style ="background:{{$item}}" ></a></li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -100,10 +89,9 @@
                         <span>Size</span>
                         <div class="pro-details-size">
                             <ul>
-                                <li><a class="active-size gray" href="#">S</a></li>
-                                <li><a class="gray" href="#">M</a></li>
-                                <li><a class="gray" href="#">L</a></li>
-                                <li><a class="gray" href="#">XL</a></li>
+                                @foreach ($checkSize as $item)
+                                    <li><a class=" gray " href="#" >{{$item}}</a></li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -111,8 +99,10 @@
                         et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercita ullamco laboris nisi
                         ut aliquip ex ea commodo </p>
                     <div class="pro-details-quality">
-                        <div class="cart-plus-minus">
+                        <div class="cart-plus-minus">                           
+                            <div class="dec qtybutton">-</div>
                             <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1" />
+                            <div class="inc qtybutton">+</div>
                         </div>
                         <div class="pro-details-cart">
                             <button class="add-cart" href="#"> Add To
@@ -216,7 +206,7 @@
                             <div class="review-wrapper">
                                 <div class="single-review">
                                     <div class="review-img">
-                                        <img src="assets/images/review-image/1.png" alt="" />
+                                        <img src="{{url('assets')}}/images/review-image/1.png" alt="" />
                                     </div>
                                     <div class="review-content">
                                         <div class="review-top-wrap">
@@ -247,7 +237,7 @@
                                 </div>
                                 <div class="single-review child-review">
                                     <div class="review-img">
-                                        <img src="assets/images/review-image/2.png" alt="" />
+                                        <img src="{{url('assets')}}/images/review-image/2.png" alt="" />
                                     </div>
                                     <div class="review-content">
                                         <div class="review-top-wrap">
@@ -339,8 +329,8 @@
                     <div class="product">
                         <div class="thumb">
                             <a href="single-product.html" class="image">
-                                <img src="assets/images/product-image/8.jpg" alt="Product" />
-                                <img class="hover-image" src="assets/images/product-image/6.jpg"
+                                <img src="{{url('assets')}}/images/product-image/8.jpg" alt="Product" />
+                                <img class="hover-image" src="{{url('assets')}}/images/product-image/6.jpg"
                                     alt="Product" />
                             </a>
                             <span class="badges">
@@ -380,8 +370,8 @@
                     <div class="product">
                         <div class="thumb">
                             <a href="single-product.html" class="image">
-                                <img src="assets/images/product-image/9.jpg" alt="Product" />
-                                <img class="hover-image" src="assets/images/product-image/5.jpg"
+                                <img src="{{url('assets')}}/images/product-image/9.jpg" alt="Product" />
+                                <img class="hover-image" src="{{url('assets')}}/images/product-image/5.jpg"
                                     alt="Product" />
                             </a>
                             <span class="badges">
@@ -423,8 +413,8 @@
                     <div class="product">
                         <div class="thumb">
                             <a href="single-product.html" class="image">
-                                <img src="assets/images/product-image/10.jpg" alt="Product" />
-                                <img class="hover-image" src="assets/images/product-image/2.jpg"
+                                <img src="{{url('assets')}}/images/product-image/10.jpg" alt="Product" />
+                                <img class="hover-image" src="{{url('assets')}}/images/product-image/2.jpg"
                                     alt="Product" />
                             </a>
                             <span class="badges">
@@ -464,8 +454,8 @@
                     <div class="product">
                         <div class="thumb">
                             <a href="single-product.html" class="image">
-                                <img src="assets/images/product-image/11.jpg" alt="Product" />
-                                <img class="hover-image" src="assets/images/product-image/11.jpg"
+                                <img src="{{url('assets')}}/images/product-image/11.jpg" alt="Product" />
+                                <img class="hover-image" src="{{url('assets')}}/images/product-image/11.jpg"
                                     alt="Product" />
                             </a>
                             <span class="badges">
@@ -505,8 +495,8 @@
                     <div class="product">
                         <div class="thumb">
                             <a href="single-product.html" class="image">
-                                <img src="assets/images/product-image/3.jpg" alt="Product" />
-                                <img class="hover-image" src="assets/images/product-image/4.jpg"
+                                <img src="{{url('assets')}}/images/product-image/3.jpg" alt="Product" />
+                                <img class="hover-image" src="{{url('assets')}}/images/product-image/4.jpg"
                                     alt="Product" />
                             </a>
                             <span class="badges">
@@ -548,8 +538,8 @@
                     <div class="product">
                         <div class="thumb">
                             <a href="single-product.html" class="image">
-                                <img src="assets/images/product-image/1.jpg" alt="Product" />
-                                <img class="hover-image" src="assets/images/product-image/2.jpg"
+                                <img src="{{url('assets')}}/images/product-image/1.jpg" alt="Product" />
+                                <img class="hover-image" src="{{url('assets')}}/images/product-image/2.jpg"
                                     alt="Product" />
                             </a>
                             <span class="badges">
