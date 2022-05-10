@@ -22,7 +22,12 @@ class Product extends Model
         'status'
     ];
 
-    public function product_variants(){
-        return $this->belongsTo(product_variant::class, 'product_id','id_color','id_size');
+    public function product_variants()
+    {
+        return $this->belongsTo(product_variant::class, 'product_id', 'color_id', 'size_id');
+    }
+    public function images()
+    {
+        return $this->hasMany(Product_img::class);
     }
 }

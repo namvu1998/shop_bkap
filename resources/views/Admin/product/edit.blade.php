@@ -1,6 +1,24 @@
 @extends('admin.master')
 @section('content')
 <div class="container">
+    <h5>Ảnh chi tiết</h5>
+    @if(count($products->images)>0)
+    @foreach($products->images as $item)
+    <form action="/admin/product/files/{{$item->id}}">
+        @csrf
+        <button class="btn text-danger">X</button>
+        <br>
+        @csrf
+        @method('delete')
+    </form>
+    <br>
+    <div class="row">
+        <div class="col-md-3">
+            <img src="{{asset('uploads2/' . $item->images)}}" width="150px" height="150px" alt="">
+        </div>
+    </div>
+    @endforeach
+    @endif
     <nav class="navbar navbar-expand-sm fs-1 fw-bold">
         Create Product
     </nav>
@@ -8,7 +26,7 @@
         @csrf
         <div class="mb-3">
             <label for="" class="form-label">Name</label>
-            <input type="text" class="form-control " name="name" id="name" aria-describedby="helpId" value="{{old('name')}}" onkeyup="ChangeToSlug()">
+            <input type="text" class="form-control " name="name" id="name" aria-describedby="helpId" value="{{$products->name}}" onkeyup="ChangeToSlug()">
             @error('name')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
@@ -17,7 +35,7 @@
 
         <div class="mb-3">
             <label for="" class="form-label">Slug (đường dẫn chuẩn seo)</label>
-            <input type="text" class="form-control " name="sl" id="slug" aria-describedby="helpId" value="{{old('sl')}}">
+            <input type="text" class="form-control " name="sl" id="slug" aria-describedby="helpId" value="{{$products->slug}}">
             @error('slug')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
@@ -26,7 +44,7 @@
 
         <div class="mb-3">
             <label for="" class="form-label">Price</label>
-            <input type="text" class="form-control" name="price" id="" aria-describedby="helpId" value="{{old('price')}}">
+            <input type="text" class="form-control" name="price" id="" aria-describedby="helpId" value="{{$products->price}}">
             @error('price')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
@@ -35,7 +53,7 @@
 
         <div class="mb-3">
             <label for="" class="form-label">Sale price</label>
-            <input type="text" class="form-control" name="sale_price" id="" aria-describedby="helpId" value="{{old('sale_price')}}">
+            <input type="text" class="form-control" name="sale_price" id="" aria-describedby="helpId" value="{{$products->sale_price}}">
             @error('sale_price')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
@@ -47,7 +65,7 @@
                 <label class="form-label">Category</label>
                 <select class="form-control" id="inputName" name="category_id">
                     @foreach($categories as $item)
-                    <option value="{{$item->id}}" default>{{$item->name}}</option>
+                    <option value="{{$item->id}}" {{$item->id == $products->category_id ? 'selected' : ''}}>{{$item->name}}</option>
                     @endforeach
 
                 </select>
@@ -56,7 +74,8 @@
 
         <div class="mb-3">
             <label for="" class="form-label">Avatar</label>
-            <input type="file" class="form-control " name="file" id="" aria-describedby="helpId">
+            <input type="file" class="form-control " name="file" id="" aria-describedby="helpId"><br>
+            <img src="{{asset('uploads/' . $products->image)}}" alt="">
             @error('image')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
@@ -66,6 +85,14 @@
         <div class="mb-3">
             <label for="" class="form-label">Image</label>
             <input type="file" class="form-control " name="files[]" multiple id="" aria-describedby="helpId">
+            <br>
+            <div>
+                @if(count($products->images)>0)
+                @foreach($products->images as $item)
+                <img src="{{asset('uploads2/' . $item->images)}}" width="150px" height="150px" alt="">
+                @endforeach
+                @endif
+            </div>
             @error('files')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
@@ -74,7 +101,7 @@
 
         <div class="mb-3">
             <label for="" class="form-label">Content</label>
-            <input type="text" class="form-control" name="content" id="" aria-describedby="helpId" value="{{old('content')}}">
+            <input type="text" class="form-control" name="content" id="" aria-describedby="helpId" value="{{$products->content}}">
             @error('content')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
@@ -83,7 +110,8 @@
 
         <div class="mb-3">
             <label for="" class="form-label">Description</label>
-            <textarea type="text" class="form-control" name="description" id="description" aria-describedby="helpId" value="{{old('description')}}">
+            <textarea type="text" class="form-control" name="description" id="description" aria-describedby="helpId" value="">
+            {{$products->description}}
             </textarea>
             @error('description')
             <div class="alert alert-danger">{{ $message }}</div>
@@ -93,7 +121,7 @@
 
         <div class="mb-3">
             <label for="" class="form-label">Shoe code</label>
-            <input type="text" class="form-control" name="shoe_code" id="" aria-describedby="helpId" value="{{old('shoe_code')}}">
+            <input type="text" class="form-control" name="shoe_code" id="" aria-describedby="helpId" value="{{$products->shoe_code}}">
             @error('shoe_code')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
@@ -133,7 +161,7 @@
     </div>
     <div class="form-check form-check-inline">
         <label class="form-check-label">
-            <input class="form-check-input" type="radio" name="status" id="status" value="1" checked="checked">
+            <input class="form-check-input" type="radio" name="status" checked id="status" value="1">
             Hiện
         </label>
     </div>
