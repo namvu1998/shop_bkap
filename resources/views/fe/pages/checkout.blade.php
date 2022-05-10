@@ -26,79 +26,34 @@
         <div class="row">
             <div class="col-lg-7">
                 <div class="billing-info-wrap">
-                    <h3>Billing Details</h3>
+                    <h3>Chi tiết thanh toán</h3>
                     <div class="row">
-                        <div class="col-lg-6 col-md-6">
+                        <div class="col-lg-12 ">
                             <div class="billing-info mb-4">
-                                <label>First Name</label>
-                                <input type="text" />
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="billing-info mb-4">
-                                <label>Last Name</label>
-                                <input type="text" />
+                                <label>Họ tên</label>
+                                <input type="text" value="{{Auth::user()->name}}"/>
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="billing-info mb-4">
-                                <label>Company Name</label>
-                                <input type="text" />
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="billing-select mb-4">
-                                <label>Country</label>
-                                <select>
-                                    <option>Select a country</option>
-                                    <option>Azerbaijan</option>
-                                    <option>Bahamas</option>
-                                    <option>Bahrain</option>
-                                    <option>Bangladesh</option>
-                                    <option>Barbados</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="billing-info mb-4">
-                                <label>Street Address</label>
-                                <input class="billing-address" placeholder="House number and street name"
-                                    type="text" />
-                                <input placeholder="Apartment, suite, unit etc." type="text" />
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="billing-info mb-4">
-                                <label>Town / City</label>
+                                <label>Địa chỉ</label>
                                 <input type="text" />
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6">
                             <div class="billing-info mb-4">
-                                <label>State / County</label>
+                                <label>Số điện thoại</label>
                                 <input type="text" />
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6">
                             <div class="billing-info mb-4">
-                                <label>Postcode / ZIP</label>
-                                <input type="text" />
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="billing-info mb-4">
-                                <label>Phone</label>
-                                <input type="text" />
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="billing-info mb-4">
-                                <label>Email Address</label>
-                                <input type="text" />
+                                <label>Địa chỉ email</label>
+                                <input type="text" value="{{Auth::user()->email}}"/>
                             </div>
                         </div>
                     </div>
-                    <div class="checkout-account mb-30px">
+                    {{-- <div class="checkout-account mb-30px">
                         <input class="checkout-toggle2 w-auto h-auto" type="checkbox" />
                         <label>Create an account?</label>
                     </div>
@@ -106,16 +61,16 @@
                         <input placeholder="Email address" type="email" />
                         <input placeholder="Password" type="password" />
                         <button class="btn-hover checkout-btn" type="submit">register</button>
-                    </div>
+                    </div> --}}
                     <div class="additional-info-wrap">
-                        <h4>Additional information</h4>
+                        {{-- <h4>Additional information</h4> --}}
                         <div class="additional-info">
-                            <label>Order notes</label>
-                            <textarea placeholder="Notes about your order, e.g. special notes for delivery. "
+                            <label>Ghi chú đơn hàng</label>
+                            <textarea placeholder="Ghi chú cho đơn hàng của bạn."
                                 name="message"></textarea>
                         </div>
                     </div>
-                    <div class="checkout-account mt-25">
+                    {{-- <div class="checkout-account mt-25">
                         <input class="checkout-toggle w-auto h-auto" type="checkbox" />
                         <label>Ship to a different address?</label>
                     </div>
@@ -191,18 +146,18 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="col-lg-5 mt-md-30px mt-lm-30px ">
                 <div class="your-order-area">
-                    <h3>Your order</h3>
+                    <h3>Đơn hàng của bạn</h3>
                     <div class="your-order-wrap gray-bg-4">
                         <div class="your-order-product-info">
                             <div class="your-order-top">
                                 <ul>
-                                    <li>Product</li>
-                                    <li>Total</li>
+                                    <li>Sản phẩm</li>
+                                    <li>Giá</li>
                                 </ul>
                             </div>
                             <div class="your-order-middle">
@@ -215,13 +170,13 @@
                             </div>
                             <div class="your-order-bottom">
                                 <ul>
-                                    <li class="your-order-shipping">Shipping</li>
-                                    <li>Free shipping</li>
+                                    <li class="your-order-shipping">Giao hàng :</li>
+                                    <li>Miễn phí giao hàng</li>
                                 </ul>
                             </div>
                             <div class="your-order-total">
                                 <ul>
-                                    <li class="order-total">Total</li>
+                                    <li class="order-total">Tổng giá</li>
                                     <li>$100</li>
                                 </ul>
                             </div>
@@ -229,7 +184,7 @@
                         <div class="payment-method">
                             <div class="payment-accordion element-mrg">
                                 <div id="faq" class="panel-group">
-                                    <div class="panel panel-default single-my-account m-0">
+                                    {{-- <div class="panel panel-default single-my-account m-0">
                                         <div class="panel-heading my-account-title">
                                             <h4 class="panel-title"><a data-bs-toggle="collapse"
                                                     href="#my-account-1" class="collapsed"
@@ -259,11 +214,11 @@
                                                     Store State / County, Store Postcode.</p>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="panel panel-default single-my-account m-0">
                                         <div class="panel-heading my-account-title">
                                             <h4 class="panel-title"><a data-bs-toggle="collapse"
-                                                    href="#my-account-3">Cash on delivery</a></h4>
+                                                    href="#my-account-3">Thanh toán khi nhận hàng</a></h4>
                                         </div>
                                         <div id="my-account-3" class="panel-collapse collapse"
                                             data-bs-parent="#faq">
@@ -279,7 +234,7 @@
                         </div>
                     </div>
                     <div class="Place-order mt-25">
-                        <a class="btn-hover" href="#">Place Order</a>
+                        <a class="btn-hover" href="#">Đặt hàng</a>
                     </div>
                 </div>
             </div>

@@ -32,13 +32,18 @@ Route::get('/', [IndexController::class,'index'])->name('home');
 Route::get('/shop', [ShopController::class,'index'])->name('shop');
 
 //Chi tiết sản phẩm
-Route::get('/productDetail', [ShopController::class,'ProductDetail'])->name('productDetail');
+Route::get('/product/{id}', [ShopController::class,'ProductDetail'])->name('productDetail');
 
 //Giỏ hàng
 Route::get('/cart', [CartController::class,'index'])->name('cart');
 
 //Checkout
-Route::get('/checkout', [CheckoutController::class,'index'])->name('checkout');
+Route::prefix('checkout')->group(function(){
+    Route::get('/', [CheckoutController::class,'index'])->name('checkout');
+    Route::post('/', [CheckoutController::class,'create'])->name('order.create');
+
+});
+
 
 //blog
 Route::get('/blog', [BlogController::class,'index'])->name('blog');
