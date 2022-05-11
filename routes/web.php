@@ -28,6 +28,7 @@ use Illuminate\Support\Facades\Route;
 */
 //Trang người dùng
 Route::get('/', [IndexController::class, 'index'])->name('home');
+Route::get('/detail/product/{id}', [IndexController::class, 'detailProduct'])->name('product.detail');
 
 //Shop
 Route::get('/shop', [ShopController::class, 'index'])->name('shop');

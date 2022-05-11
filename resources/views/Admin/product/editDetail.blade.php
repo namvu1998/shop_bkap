@@ -10,7 +10,7 @@
             <label for="" class="form-label">Color</label>
             @foreach($attribute_color as $data)
             <div class="form-check" style="margin-bottom:1rem !important">
-                <input type="radio" name='color_id' class="form-check-input" id="exampleCheck1" value="{{$data->id}}">
+                <input type="radio" name='color_id' class="form-check-input" id="exampleCheck1" @if($data->value == $color_id)checked @endif value="{{$data->id}}">
                 <label class="form-check-label" for="exampleCheck1">
                     <div style="width:50px; height:20px; background:{{$data->value}}"></div>
                 </label>
@@ -25,7 +25,7 @@
             <label for="" class="form-label">Size</label>
             @foreach($attribute_size as $data)
             <div class="form-check" style="margin-bottom:1rem !important">
-                <input type="radio" name="size_id" {{(in_array($data->id,$size_id) ? 'checked' : '')}} class="form-check-input" id="exampleCheck1" value="{{$data->id}}">
+                <input type="radio" name="size_id" @if($data->value == $size_id)checked @endif class="form-check-input" id="exampleCheck1" value="{{$data->id}}">
                 <label class="form-check-label" for="exampleCheck1"> {{$data->value}}</label>
             </div>
             @endforeach

@@ -207,8 +207,20 @@ class ProductController extends Controller
             $attribute = Product_variant::find($id);
             $attribute_color = Attribute::where('name', 'color')->get();
             $attribute_size = Attribute::where('name', 'size')->get();
-            $color_id = DB::table('product_variants')->where('product_id', $id)->pluck('color_id')->toArray();
-            $size_id = DB::table('product_variants')->where('product_id', $id)->pluck('size_id')->toArray();
+            $color_id = DB::table('product_variants')
+                ->join('attributes', 'attributes.id', 'product_variants.color_id')
+                ->where('attributes.id', $attribute->color_id)
+                ->get();
+            foreach ($color_id as $color_id1) {
+                $color_id = $color_id1->value;
+            }
+            $size_id = DB::table('product_variants')
+                ->join('attributes', 'attributes.id', 'product_variants.size_id')
+                ->where('attributes.id', $attribute->size_id)
+                ->get();
+            foreach ($size_id as $size_id1) {
+                $size_id = $size_id1->value;
+            }
             return view('admin.product.editDetail', compact('attribute_color', 'attribute_size', 'attribute', 'color_id', 'size_id'));
         } catch (\Throwable $th) {
             throw $th;
