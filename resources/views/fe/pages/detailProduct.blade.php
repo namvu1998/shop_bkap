@@ -32,7 +32,7 @@
                         </div>
                         @foreach($detailProduct->images as $item)
                         <div class="swiper-slide zoom-image-hover">
-                            <img class="img-responsive m-auto" src="{{asset('uplodas/' . $item->images)}}" alt="">
+                            <img class="img-responsive m-auto" src="{{asset('uploads/' . $item->images)}}" alt="">
                         </div>
                         @endforeach
                     </div>
@@ -51,6 +51,12 @@
                         <div class="swiper-slide">
                             <img class="img-responsive m-auto" src="assets/images/product-image/small-image/4.jpg" alt="">
                         </div>
+                        @foreach($product->proImg as $item)
+                        <div class="swiper-slide">
+                            <img class="img-responsive m-auto" src="{{url('uploads')}}/{{$item->images}}" alt="">
+                        </div>
+                        @endforeach
+
                     </div>
                 </div>
             </div>
@@ -59,7 +65,8 @@
                     <h2>Ardene Microfiber Tights</h2>
                     <div class="pricing-meta">
                         <ul>
-                            <li class="old-price not-cut">$18.90</li>
+                            <li class="old-price not-cut">{{$product->price}} đ</li>
+                            <li class="old-price not-cut">{{$product->sale_price}} %</li>
                         </ul>
                     </div>
                     <div class="pro-details-rating-wrap">
@@ -76,10 +83,9 @@
                         <span>Color</span>
                         <div class="pro-details-color">
                             <ul>
-                                <li><a class="active-color yellow" href="#"></a></li>
-                                <li><a class="black" href="#"></a></li>
-                                <li><a class="red" href="#"></a></li>
-                                <li><a class="pink" href="#"></a></li>
+                                @foreach ($checkColor as $item)
+                                <li><a class=" " href="#" style="background:{{$item}}"></a></li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -88,17 +94,18 @@
                         <span>Size</span>
                         <div class="pro-details-size">
                             <ul>
-                                <li><a class="active-size gray" href="#">S</a></li>
-                                <li><a class="gray" href="#">M</a></li>
-                                <li><a class="gray" href="#">L</a></li>
-                                <li><a class="gray" href="#">XL</a></li>
+                                @foreach ($checkSize as $item)
+                                <li><a class=" gray " href="#">{{$item}}</a></li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
                     <p class="m-0">{!!$detailProduct->description!!}</p>
                     <div class="pro-details-quality">
                         <div class="cart-plus-minus">
+                            <div class="dec qtybutton">-</div>
                             <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1" />
+                            <div class="inc qtybutton">+</div>
                         </div>
                         <div class="pro-details-cart">
                             <button class="add-cart" href="#"> Add To
@@ -192,7 +199,7 @@
                             <div class="review-wrapper">
                                 <div class="single-review">
                                     <div class="review-img">
-                                        <img src="assets/images/review-image/1.png" alt="" />
+                                        <img src="{{url('assets')}}/images/review-image/1.png" alt="" />
                                     </div>
                                     <div class="review-content">
                                         <div class="review-top-wrap">
@@ -223,7 +230,7 @@
                                 </div>
                                 <div class="single-review child-review">
                                     <div class="review-img">
-                                        <img src="assets/images/review-image/2.png" alt="" />
+                                        <img src="{{url('assets')}}/images/review-image/2.png" alt="" />
                                     </div>
                                     <div class="review-content">
                                         <div class="review-top-wrap">
@@ -313,12 +320,54 @@
                 <div class="new-product-item swiper-slide">
                     <!-- Single Prodect -->
                     <div class="product">
-                        <div class="thumb">
-                            <a href="{{route('product.detail', $item->id)}}" class="image">
+                        <div class="thumb"><a href="{{route('product.detail', $item->id)}}" class="image">
                                 <img src="{{asset('uploads/' . $item->images)}}" alt="Product" />
                                 <img class="hover-image" src="assets/images/product-image/6.jpg" alt="Product" />
+
+                                <a href="single-product.html" class="image">
+                                    <img src="{{url('assets')}}/images/product-image/8.jpg" alt="Product" />
+                                    <img class="hover-image" src="{{url('assets')}}/images/product-image/6.jpg" alt="Product" />
+
+                                </a>
+                                <span class="badges">
+                                    <span class="new">New</span>
+                                </span>
+                                <div class="actions">
+                                    <a href="wishlist.html" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
+                                    <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
+                                    <a href="compare.html" class="action compare" title="Compare"><i class="pe-7s-refresh-2"></i></a>
+                                </div>
+                                <button title="Add To Cart" class=" add-to-cart">Add
+                                    To Cart</button>
+                        </div>
+                        <div class="content">
+                            <span class="ratings">
+                                <span class="rating-wrap">
+                                    <span class="star" style="width: 100%"></span>
+                                </span>
+                                <span class="rating-num">( 5 Review )</span>
+                            </span>
+                            <h5 class="title"><a href="{{route('product.detail', $item->id)}}">{{$item->name}}
+                                </a>
+                            </h5>
+                            <span class="price">
+                                <span class="new">{{number_format($item->price) }} vnd
+                                </span>
+                                <span class="new">$38.50</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="new-product-item swiper-slide">
+                    <!-- Single Prodect -->
+                    <div class="product">
+                        <div class="thumb">
+                            <a href="single-product.html" class="image">
+                                <img src="{{url('assets')}}/images/product-image/9.jpg" alt="Product" />
+                                <img class="hover-image" src="{{url('assets')}}/images/product-image/5.jpg" alt="Product" />
                             </a>
                             <span class="badges">
+                                <span class="sale">-10%</span>
                                 <span class="new">New</span>
                             </span>
                             <div class="actions">
@@ -332,28 +381,176 @@
                         <div class="content">
                             <span class="ratings">
                                 <span class="rating-wrap">
-                                    <span class="star" style="width: 100%"></span>
+                                    <span class="star" style="width: 80%"></span>
                                 </span>
-                                <span class="rating-num">( 5 Review )</span>
+                                <span class="rating-num">( 4 Review )</span>
                             </span>
-                            <h5 class="title"><a href="{{route('product.detail', $item->id)}}">{{$item->name}}
-                                </a>
+                            <h5 class="title"><a href="single-product.html">Ardene Microfiber
+                                    Tights</a>
                             </h5>
                             <span class="price">
-                                <span class="new">{{number_format($item->price) }} vnd</span>
+                                <span class="new">$38.50</span>
+                                <span class="old">$48.50</span>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Single Prodect -->
+                </div>
+                <div class="new-product-item swiper-slide">
+                    <!-- Single Prodect -->
+                    <div class="product">
+                        <div class="thumb">
+                            <a href="single-product.html" class="image">
+                                <img src="{{url('assets')}}/images/product-image/10.jpg" alt="Product" />
+                                <img class="hover-image" src="{{url('assets')}}/images/product-image/2.jpg" alt="Product" />
+                            </a>
+                            <span class="badges">
+                                <span class="sale">-7%</span>
+                            </span>
+                            <div class="actions">
+                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
+                                <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
+                                <a href="compare.html" class="action compare" title="Compare"><i class="pe-7s-refresh-2"></i></a>
+                            </div>
+                            <button title="Add To Cart" class=" add-to-cart">Add
+                                To Cart</button>
+                        </div>
+                        <div class="content">
+                            <span class="ratings">
+                                <span class="rating-wrap">
+                                    <span class="star" style="width: 90%"></span>
+                                </span>
+                                <span class="rating-num">( 4.5 Review )</span>
+                            </span>
+                            <h5 class="title"><a href="single-product.html">Women's Long
+                                    Sleeve
+                                    Shirts</a></h5>
+                            <span class="price">
+                                <span class="new">$30.50</span>
+                                <span class="old">$38.00</span>
                             </span>
                         </div>
                     </div>
                 </div>
-                @endforeach
+                <div class="new-product-item swiper-slide">
+                    <!-- Single Prodect -->
+                    <div class="product">
+                        <div class="thumb">
+                            <a href="single-product.html" class="image">
+                                <img src="{{url('assets')}}/images/product-image/11.jpg" alt="Product" />
+                                <img class="hover-image" src="{{url('assets')}}/images/product-image/11.jpg" alt="Product" />
+                            </a>
+                            <span class="badges">
+                                <span class="new">Sale</span>
+                            </span>
+                            <div class="actions">
+                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
+                                <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
+                                <a href="compare.html" class="action compare" title="Compare"><i class="pe-7s-refresh-2"></i></a>
+                            </div>
+                            <button title="Add To Cart" class=" add-to-cart">Add
+                                To Cart</button>
+                        </div>
+                        <div class="content">
+                            <span class="ratings">
+                                <span class="rating-wrap">
+                                    <span class="star" style="width: 70%"></span>
+                                </span>
+                                <span class="rating-num">( 3.5 Review )</span>
+                            </span>
+                            <h5 class="title"><a href="single-product.html">Parrera
+                                    Sunglasses -
+                                    Lomashop</a></h5>
+                            <span class="price">
+                                <span class="new">$38.50</span>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Single Prodect -->
             </div>
-            <!-- Add Arrows -->
-            <div class="swiper-buttons">
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
+            <div class="new-product-item swiper-slide">
+                <!-- Single Prodect -->
+                <div class="product">
+                    <div class="thumb">
+                        <a href="single-product.html" class="image">
+                            <img src="{{url('assets')}}/images/product-image/3.jpg" alt="Product" />
+                            <img class="hover-image" src="{{url('assets')}}/images/product-image/4.jpg" alt="Product" />
+                        </a>
+                        <span class="badges">
+                            <span class="sale">-10%</span>
+                            <span class="new">New</span>
+                        </span>
+                        <div class="actions">
+                            <a href="wishlist.html" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
+                            <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
+                            <a href="compare.html" class="action compare" title="Compare"><i class="pe-7s-refresh-2"></i></a>
+                        </div>
+                        <button title="Add To Cart" class=" add-to-cart">Add
+                            To Cart</button>
+                    </div>
+                    <div class="content">
+                        <span class="ratings">
+                            <span class="rating-wrap">
+                                <span class="star" style="width: 80%"></span>
+                            </span>
+                            <span class="rating-num">( 4 Review )</span>
+                        </span>
+                        <h5 class="title"><a href="single-product.html">Ardene Microfiber
+                                Tights</a>
+                        </h5>
+                        <span class="price">
+                            <span class="new">$38.50</span>
+                            <span class="old">$48.50</span>
+                        </span>
+                    </div>
+                </div>
+                <!-- Single Prodect -->
+            </div>
+            <div class="new-product-item swiper-slide">
+                <!-- Single Prodect -->
+                <div class="product">
+                    <div class="thumb">
+                        <a href="single-product.html" class="image">
+                            <img src="{{url('assets')}}/images/product-image/1.jpg" alt="Product" />
+                            <img class="hover-image" src="{{url('assets')}}/images/product-image/2.jpg" alt="Product" />
+                        </a>
+                        <span class="badges">
+                            <span class="new">New</span>
+                        </span>
+                        <div class="actions">
+                            <a href="wishlist.html" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
+                            <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
+                            <a href="compare.html" class="action compare" title="Compare"><i class="pe-7s-refresh-2"></i></a>
+                        </div>
+                        <button title="Add To Cart" class=" add-to-cart">Add
+                            To Cart</button>
+                    </div>
+                    <div class="content">
+                        <span class="ratings">
+                            <span class="rating-wrap">
+                                <span class="star" style="width: 100%"></span>
+                            </span>
+                            <span class="rating-num">( 5 Review )</span>
+                        </span>
+                        <h5 class="title"><a href="single-product.html">Women's Elizabeth
+                                Coat
+                            </a>
+                        </h5>
+                        <span class="price">
+                            <span class="new">$38.50</span>
+                        </span>
+                    </div>
+                </div>
+                <!-- Single Prodect -->
             </div>
         </div>
+        <!-- Add Arrows -->
+        <div class="swiper-buttons">
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
     </div>
+</div>
 </div>
 <!-- Related product Area End -->
 @stop

@@ -30,4 +30,12 @@ class Product extends Model
     {
         return $this->hasMany(Product_img::class);
     }
+    public function proImg()
+    {
+        return $this->hasMany(Product_img::class);
+    }
+    public function proV()
+    {
+        return $this->hasMany(Product_variant::class);
+    }
 }

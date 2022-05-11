@@ -73,14 +73,14 @@ class ProductController extends Controller
             }
             if ($req->hasFile('files')) {
                 $files = $req->file('files');
-                foreach ($files as $value) {
-                    $fileNames = $value->getClientOriginalName();
-                    $value->move('uploads', $fileNames);
-                    $img_product = Product_img::create([
-                        'product_id' => $product->id,
-                        'images' => $fileNames,
-                    ]);
-                }
+                foreach($files as $value){
+                        $fileNames = $value->getClientOriginalName();
+                        $value->move('uploads',$fileNames);
+                        $img_product= Product_img::create([
+                            'product_id'=>$product->id,
+                            'images'=>$fileNames,
+                        ]);
+                }      
             };
             return redirect()->route('admin.product.index')->with('success', 'Thêm mới thành công.');
         } catch (\Throwable $th) {
