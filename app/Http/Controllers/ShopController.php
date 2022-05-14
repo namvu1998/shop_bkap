@@ -10,10 +10,12 @@ use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view('fe.pages.shop');
     }
-    public function test(){
+    public function test()
+    {
         return view('fe.pages.test');
     }
     public function detailProduct($id)

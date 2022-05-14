@@ -40,13 +40,19 @@ Route::post('/getSize', [ShopController::class, 'getSize']);
 Route::post('/getQty', [ShopController::class, 'getQty']);
 //Giỏ hàng
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::get('/add-cart/{id}', [CartController::class, 'AddCart'])->name('AddCart');
+Route::get('/show-cart', [CartController::class, 'ShowCart'])->name('ShowCart');
+Route::get('/update-cart', [CartController::class, 'UpdateCart'])->name('UpdateCart');
+Route::get('/delete-cart', [CartController::class, 'DeleteCart'])->name('DeleteCart');
+Route::get('/thanh-toan', [CartController::class, 'getFormPay'])->name('getFormPay');
+Route::post('/dat-hang', [CartController::class, 'getSaveInfo'])->name('getSaveInfo');
+Route::get('/thanh-cong', [CartController::class, 'thanhcong'])->name('thanhcong');
 
 //Checkout
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
-Route::prefix('checkout')->group(function(){
-    Route::get('/', [CheckoutController::class,'index'])->name('checkout');
-    Route::post('/', [CheckoutController::class,'create'])->name('order.create');
-
+Route::prefix('checkout')->group(function () {
+    Route::get('/', [CheckoutController::class, 'index'])->name('checkout');
+    Route::post('/', [CheckoutController::class, 'create'])->name('order.create');
 });
 
 
@@ -69,6 +75,8 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 //Trang Admin
 Route::prefix('admin')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('admin.index');
+    Route::get('/order-detail/{id}', [HomeController::class, 'show'])->name('orderDetail');
+
 
     Route::prefix('category')->group(function () {
         Route::get('/', [CategoryController::class, 'index'])->name('admin.category.index');
