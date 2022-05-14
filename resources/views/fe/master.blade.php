@@ -11,7 +11,7 @@
     <title>Jesco - Fashoin eCommerce HTML Template</title>
     <meta name="description" content="Jesco - Fashoin eCommerce HTML Template" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Add site Favicon -->
     <link rel="shortcut icon" href="{{url('assets')}}/images/favicon/favicon.ico" type="image/png">
 
@@ -32,7 +32,6 @@
     <link rel="stylesheet" href="{{url('assets')}}/css/vendor/vendor.min.css" />
     <link rel="stylesheet" href="{{url('assets')}}/css/plugins/plugins.min.css" />
     <link rel="stylesheet" href="{{url('assets')}}/css/style.min.css">
-
     <!-- Main Style -->
     <!-- <link rel="stylesheet" href="{{url('assets')}}/css/style.css" /> -->
 

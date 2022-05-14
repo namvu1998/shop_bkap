@@ -346,6 +346,7 @@
 
 <!-- Main Js -->
 <script src="{{url('assets')}}/js/main.js"></script>
+@yield('js');
 </body>
 
 
