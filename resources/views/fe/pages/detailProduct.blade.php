@@ -55,109 +55,113 @@
                 </div>
             </div>
             <div class="col-lg-6 col-sm-12 col-xs-12" data-aos="fade-up" data-aos-delay="200">
-                <div class="product-details-content quickview-content">
-                    <h2>Ardene Microfiber Tights</h2>
-                    <div class="pricing-meta">
-                        <ul>
-                            <li class="old-price not-cut">{{number_format(($detailProduct->price) - ($detailProduct->sale_price)) }} vnd <del style="color:#a19d99">{{number_format($detailProduct->price)}} vnd</del></li>
-                        </ul>
-                    </div>
-                    <div class="pro-details-rating-wrap">
-                        <div class="rating-product">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <span class="read-review"><a class="reviews" href="#">( 5 Customer Review )</a></span>
-                    </div>
-                    <div class="pro-details-color-info d-flex align-items-center">
-                        <span>Color</span>
-                        <div class="pro-details-color">
+                <form action="{{route('AddCart')}}" method="POST">
+                    @csrf
+                    <div class="product-details-content quickview-content">
+                        <input type="hidden" name="product_id" id="" value="{{$detailProduct->id}}">
+                        <h2>{{$detailProduct->name}}</h2>
+                        <div class="pricing-meta">
                             <ul>
-                                @foreach ($checkColorId as $item)
-                                    {{-- @dd($item["color_id"]); --}}
+                                <li class="old-price not-cut">{{number_format(($detailProduct->price) - ($detailProduct->sale_price)) }} vnd <del style="color:#a19d99">{{number_format($detailProduct->price)}} vnd</del></li>
+                            </ul>
+                        </div>
+                        <div class="pro-details-rating-wrap">
+                            <div class="rating-product">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <span class="read-review"><a class="reviews" href="#">( 5 Customer Review )</a></span>
+                        </div>
+                        <div class="pro-details-color-info d-flex align-items-center">
+                            <span>Color</span>
+                            <div class="pro-details-color">
+                                <ul>
+                                    @foreach ($checkColorId as $item)
                                     <li id="clickChooseColor" class="color" product_id="{{$item["product_id"]}}" color_id="{{$item["color_id"]}}">
-                                    <a class="" href="javascript:void(0)" style="background:{{$item['value']}}"></a></li>
-                                @endforeach
+                                        <a class="" href="javascript:void(0)" style="background:{{$item['value']}}"></a>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                        <h4>đây là input ID COLOR</h4>
+                        <input type="text" name="color_id_input">
+                        <!-- Sidebar single item -->
+                        <div class="pro-details-size-info d-flex align-items-center">
+                            <span>Size</span>
+                            <div class="pro-details-size">
+                                <ul class="hung_color">
+                                    @foreach ($checkSizeId as $item)
+                                    <li><a class=" gray " href="javascript:void(0)">{{$item['value']}}</a></li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                        <h4>đây là input ID SIZE</h4>
+                        <input type="text" name="size_id_input">
+                        <div class="hung_qty"></div>
+                        <p class="m-0">{!!$detailProduct->description!!}</p>
+                        <div class="pro-details-quality">
+                            <div class="cart-plus-minus">
+                                <div class="dec qtybutton">-</div>
+                                <input class="cart-plus-minus-box" type="text" name="quantity" value="1" />
+                                <div class="inc qtybutton">+</div>
+                            </div>
+                            <div class="pro-details-cart">
+                                <button class="add-cart" type="submit">Add cart</button>
+                                <!-- <a class="add-cart" href="{{route('AddCart', $detailProduct->id)}}">Add Cart</a> -->
+                            </div>
+                            <div class="pro-details-compare-wishlist pro-details-wishlist ">
+                                <a href="wishlist.html"><i class="pe-7s-like"></i></a>
+                            </div>
+                            <div class="pro-details-compare-wishlist pro-details-compare">
+                                <a href="compare.html"><i class="pe-7s-refresh-2"></i></a>
+                            </div>
+                        </div>
+                        <div class="pro-details-sku-info pro-details-same-style  d-flex">
+                            <span>SKU: </span>
+                            <ul class="d-flex">
+                                <li>
+                                    <a href="#">Ch-256xl</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="pro-details-categories-info pro-details-same-style d-flex">
+                            <span>Categories: </span>
+                            <ul class="d-flex">
+                                <li>
+                                    <a href="#">Fashion.</a>
+                                </li>
+                                <li>
+                                    <a href="#">eCommerce</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="pro-details-social-info pro-details-same-style d-flex">
+                            <span>Share: </span>
+                            <ul class="d-flex">
+                                <li>
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-google"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-youtube"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-instagram"></i></a>
+                                </li>
                             </ul>
                         </div>
                     </div>
-                    <h4>đây là input ID COLOR</h4>
-                    <input type="text" name="color_id_input" >
-                    <!-- Sidebar single item -->
-                    <div class="pro-details-size-info d-flex align-items-center">
-                        <span>Size</span>
-                        <div class="pro-details-size">
-                            <ul class="hung_color">
-                                @foreach ($checkSizeId as $item)
-                                <li><a class=" gray " href="javascript:void(0)">{{$item['value']}}</a></li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                    <h4>đây là input ID SIZE</h4>
-                    <input type="text" name="size_id_input" >
-                    <div class="hung_qty"></div>
-                    <p class="m-0">{!!$detailProduct->description!!}</p>
-                    <div class="pro-details-quality">
-                        <div class="cart-plus-minus">
-                            <div class="dec qtybutton">-</div>
-                            <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1" />
-                            <div class="inc qtybutton">+</div>
-                        </div>
-                        <div class="pro-details-cart">
-                            <button class="add-cart" href="#"> Add To
-                                Cart</button>
-                        </div>
-                        <div class="pro-details-compare-wishlist pro-details-wishlist ">
-                            <a href="wishlist.html"><i class="pe-7s-like"></i></a>
-                        </div>
-                        <div class="pro-details-compare-wishlist pro-details-compare">
-                            <a href="compare.html"><i class="pe-7s-refresh-2"></i></a>
-                        </div>
-                    </div>
-                    <div class="pro-details-sku-info pro-details-same-style  d-flex">
-                        <span>SKU: </span>
-                        <ul class="d-flex">
-                            <li>
-                                <a href="#">Ch-256xl</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="pro-details-categories-info pro-details-same-style d-flex">
-                        <span>Categories: </span>
-                        <ul class="d-flex">
-                            <li>
-                                <a href="#">Fashion.</a>
-                            </li>
-                            <li>
-                                <a href="#">eCommerce</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="pro-details-social-info pro-details-same-style d-flex">
-                        <span>Share: </span>
-                        <ul class="d-flex">
-                            <li>
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-google"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-youtube"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -362,51 +366,60 @@
         </div>
     </div>
 </div>
-@section('js')
 <script src="{{url('assets')}}/js/vendor/vendor.min.js"></script>
-    <script src="{{url('assets')}}/js/plugins/plugins.min.js"></script>
+<script src="{{url('assets')}}/js/plugins/plugins.min.js"></script>
 
-    <!-- Main Js -->
-    <script src="{{url('assets')}}/js/main.js"></script>
+<!-- Main Js -->
+<script src="{{url('assets')}}/js/main.js"></script>
 <!-- Related product Area End -->
-<script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+@section('js')
+
 <script>
-            $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        }
-            });
-        $('.color').click(function(){
-           
-           var idPro =  $(this).attr('product_id');
-           var idColor =  $(this).attr('color_id');
-           console.log(idColor);
-           $('input[name=color_id_input').val(idColor);
-           $.ajax({
-               type:'POST',
-               url:'/getSize',
-               data:{idPro:idPro,idColor:idColor},
-               success:function(data) {
-                   var _html='';
-                  for(const key of data){
-                      _html += ` <li><a class=" gray " href="javascript:void(0)" onclick="getSize(${key['size_id']},${key['product_id']})">${key['value']}</a></li>`
-                  }
-                  $('.hung_color').html(_html);
-                  
-               }
-           });
-       });
-       function getSize(id,product_id){
-            console.log(id);
-            $('input[name=size_id_input').val(id);
-            var  color_id = $('input[name=color_id_input').val();
-            $.ajax({
-                type:'POST',
-                url:'/getQty',
-                data:{product_id:product_id,color_id:color_id,size_id:id},
-                success:function(data) {
-                    
-                    $('.hung_qty').html( ` <div class="pro-details-sku-info pro-details-same-style  d-flex">
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $('.color').click(function() {
+
+        var idPro = $(this).attr('product_id');
+        var idColor = $(this).attr('color_id');
+        console.log(idColor);
+        $('input[name=color_id_input').val(idColor);
+        $.ajax({
+            type: 'POST',
+            url: '/getSize',
+            data: {
+                idPro: idPro,
+                idColor: idColor
+            },
+            success: function(data) {
+                var _html = '';
+                for (const key of data) {
+                    _html += ` <li><a class=" gray " href="javascript:void(0)" onclick="getSize(${key['size_id']},${key['product_id']})">${key['value']}</a></li>`
+                }
+                $('.hung_color').html(_html);
+
+            }
+        });
+    });
+
+    function getSize(id, product_id) {
+        console.log(id);
+        $('input[name=size_id_input').val(id);
+        var color_id = $('input[name=color_id_input').val();
+        $.ajax({
+            type: 'POST',
+            url: '/getQty',
+            data: {
+                product_id: product_id,
+                color_id: color_id,
+                size_id: id
+            },
+            success: function(data) {
+
+                $('.hung_qty').html(` <div class="pro-details-sku-info pro-details-same-style  d-flex">
                         <span>QTY: </span>
                         <ul class="d-flex">
                             <li>
@@ -414,8 +427,8 @@
                             </li>
                         </ul>
                     </div>`);
-                }
-            });
-       }
+            }
+        });
+    }
 </script>
- @stop
+@stop
