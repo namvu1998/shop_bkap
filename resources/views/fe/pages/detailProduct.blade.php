@@ -76,23 +76,30 @@
                         <span>Color</span>
                         <div class="pro-details-color">
                             <ul>
-                                @foreach ($checkColor as $item)
-                                <li id="clickChooseColor"><a class="" href="" style="background:{{$item}}"></a></li>
+                                @foreach ($checkColorId as $item)
+                                    {{-- @dd($item["color_id"]); --}}
+                                    <li id="clickChooseColor" class="color" product_id="{{$item["product_id"]}}" color_id="{{$item["color_id"]}}">
+                                    <a class="" href="javascript:void(0)" style="background:{{$item['value']}}"></a></li>
                                 @endforeach
                             </ul>
                         </div>
                     </div>
+                    <h4>đây là input ID COLOR</h4>
+                    <input type="text" name="color_id_input" >
                     <!-- Sidebar single item -->
                     <div class="pro-details-size-info d-flex align-items-center">
                         <span>Size</span>
                         <div class="pro-details-size">
-                            <ul>
-                                @foreach ($checkSize as $item)
-                                <li><a class=" gray " href="#">{{$item}}</a></li>
+                            <ul class="hung_color">
+                                @foreach ($checkSizeId as $item)
+                                <li><a class=" gray " href="javascript:void(0)">{{$item['value']}}</a></li>
                                 @endforeach
                             </ul>
                         </div>
                     </div>
+                    <h4>đây là input ID SIZE</h4>
+                    <input type="text" name="size_id_input" >
+                    <div class="hung_qty"></div>
                     <p class="m-0">{!!$detailProduct->description!!}</p>
                     <div class="pro-details-quality">
                         <div class="cart-plus-minus">
@@ -354,32 +361,61 @@
             </div>
         </div>
     </div>
-    <script src="{{url('assets')}}/js/vendor/vendor.min.js"></script>
+</div>
+@section('js')
+<script src="{{url('assets')}}/js/vendor/vendor.min.js"></script>
     <script src="{{url('assets')}}/js/plugins/plugins.min.js"></script>
 
     <!-- Main Js -->
     <script src="{{url('assets')}}/js/main.js"></script>
-    <!-- Related product Area End -->
-    <script>
-        $('.clickChooseColor').click(function() {
-
-            var idProV = $(this).attr('product_id');
-            var idAttr = $(this).attr('id_attr_values');
-
-
+<!-- Related product Area End -->
+<script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+            $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+            });
+        $('.color').click(function(){
+           
+           var idPro =  $(this).attr('product_id');
+           var idColor =  $(this).attr('color_id');
+           console.log(idColor);
+           $('input[name=color_id_input').val(idColor);
+           $.ajax({
+               type:'POST',
+               url:'/getSize',
+               data:{idPro:idPro,idColor:idColor},
+               success:function(data) {
+                   var _html='';
+                  for(const key of data){
+                      _html += ` <li><a class=" gray " href="javascript:void(0)" onclick="getSize(${key['size_id']},${key['product_id']})">${key['value']}</a></li>`
+                  }
+                  $('.hung_color').html(_html);
+                  
+               }
+           });
+       });
+       function getSize(id,product_id){
+            console.log(id);
+            $('input[name=size_id_input').val(id);
+            var  color_id = $('input[name=color_id_input').val();
             $.ajax({
-                type: 'GET',
-                url: '/getSize',
-                data: {
-                    idV: idProV,
-                    idAttr: idAttr
-                },
-                success: function(data) {
-                    // $("#msg").html(data.msg);
-                    console.log(data);
+                type:'POST',
+                url:'/getQty',
+                data:{product_id:product_id,color_id:color_id,size_id:id},
+                success:function(data) {
+                    
+                    $('.hung_qty').html( ` <div class="pro-details-sku-info pro-details-same-style  d-flex">
+                        <span>QTY: </span>
+                        <ul class="d-flex">
+                            <li>
+                                <a href="#">${data.quantity}</a>
+                            </li>
+                        </ul>
+                    </div>`);
                 }
             });
-        })
-    </script>
-
-    @stop
+       }
+</script>
+ @stop

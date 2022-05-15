@@ -28,15 +28,16 @@ use Illuminate\Support\Facades\Route;
 */
 //Trang người dùng
 Route::get('/', [IndexController::class, 'index'])->name('home');
-Route::get('/detail/product/{id}', [ShopController::class, 'detailProduct'])->name('product.detail');
+
 //test
 Route::get('/test', [ShopController::class, 'test'])->name('test');
 //Shop
 Route::get('/shop', [ShopController::class, 'index'])->name('shop');
 
 //Chi tiết sản phẩm
-Route::get('/product/{id}', [ShopController::class, 'ProductDetail'])->name('productDetail');
-
+Route::get('/detail/product/{id}', [ShopController::class, 'detailProduct'])->name('product.detail');
+Route::post('/getSize', [ShopController::class, 'getSize']);
+Route::post('/getQty', [ShopController::class, 'getQty']);
 //Giỏ hàng
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::get('/add-cart/{id}', [CartController::class, 'AddCart'])->name('AddCart');
