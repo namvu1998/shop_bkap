@@ -362,13 +362,15 @@
         </div>
     </div>
 </div>
-@section('js')
+
 <script src="{{url('assets')}}/js/vendor/vendor.min.js"></script>
     <script src="{{url('assets')}}/js/plugins/plugins.min.js"></script>
 
     <!-- Main Js -->
     <script src="{{url('assets')}}/js/main.js"></script>
 <!-- Related product Area End -->
+
+@section('js')
 <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>
             $.ajaxSetup({
@@ -418,4 +420,5 @@
             });
        }
 </script>
+
  @stop
