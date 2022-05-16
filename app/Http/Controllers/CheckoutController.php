@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CheckoutRequest;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Product;
@@ -13,8 +14,7 @@ class CheckoutController extends Controller
         $carts = session()->get('cart');
         return view('fe.pages.checkout', compact('carts'));
     }
-    public function create(Request $req){
-        // dd($req->all());
+    public function create(CheckoutRequest $req){
         $order=Order::create([
             'name'=>$req->name,
             'email'=>$req->email,

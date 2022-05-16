@@ -14,7 +14,7 @@
         text-transform: uppercase;
         border-radius: 0;
         z-index: 9;
-}
+    }
 </style>
 <!-- breadcrumb-area start -->
 <div class="breadcrumb-area">
@@ -49,34 +49,48 @@
                             <div class="col-lg-12 ">
                                 <div class="billing-info mb-4">
                                     <label>Họ tên</label>
-                                    <input type="text" name="name" value="{{Auth::user()->name}}"/>
+                                    <input type="text" name="name" value="{{Auth::user()->name}}" />
+                                    @error('name')
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="billing-info mb-4">
                                     <label>Địa chỉ</label>
                                     <input type="text" name="address" />
+                                    @error('address')
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="billing-info mb-4">
                                     <label>Số điện thoại</label>
-                                    <input type="text" name="phone"/>
+                                    <input type="text" name="phone" />
+                                    @error('phone')
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="billing-info mb-4">
                                     <label>Địa chỉ email</label>
-                                    <input type="text" name="email" value="{{Auth::user()->email}}"/>
+                                    <input type="text" name="email" value="{{Auth::user()->email}}" />
+                                    @error('email')
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
-                        </div>                      
+                        </div>
                         <div class="additional-info-wrap">
                             {{-- <h4>Additional information</h4> --}}
                             <div class="additional-info">
                                 <label>Ghi chú đơn hàng</label>
-                                <textarea placeholder="Ghi chú cho đơn hàng của bạn."
-                                    name="note"></textarea>
+                                <textarea placeholder="Ghi chú cho đơn hàng của bạn." name="note"></textarea>
+                                @error('note')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -96,18 +110,17 @@
                                     <ul>
                                         <?php $sub_total = 0 ?>
                                         @foreach($cart->items as $key => $product)
-                                            <?php $price = $product['price'] - $product['sale_price'] ?>
-                                            <?php $total = ($product['price'] - $product['sale_price']) * $product['quantity'] ?>
-                                            <li><span class="order-middle-left">{{$product['name']}} X {{$product['quantity']}}</span> <span
-                                                class="order-price">{{number_format($total)}} vnd</span></li>
-                                            <?php $sub_total += $total ?>
-                                            <input type="hidden" name="quantity[]" value="{{$product['quantity']}}"/>
-                                            <input type="hidden" name="product_id[]" value="{{$product['id']}}"/>
-                                            <input type="hidden" name="color_id[]" value="{{$product['color']}}"/>
-                                            <input type="hidden" name="size_id[]" value="{{$product['size']}}"/>
-                                            <input type="hidden" name="price[]" value="{{$price}}"/>
+                                        <?php $price = $product['price'] - $product['sale_price'] ?>
+                                        <?php $total = ($product['price'] - $product['sale_price']) * $product['quantity'] ?>
+                                        <li><span class="order-middle-left">{{$product['name']}} X {{$product['quantity']}}</span> <span class="order-price">{{number_format($total)}} vnd</span></li>
+                                        <?php $sub_total += $total ?>
+                                        <input type="hidden" name="quantity[]" value="{{$product['quantity']}}" />
+                                        <input type="hidden" name="product_id[]" value="{{$product['id']}}" />
+                                        <input type="hidden" name="color_id[]" value="{{$product['color']}}" />
+                                        <input type="hidden" name="size_id[]" value="{{$product['size']}}" />
+                                        <input type="hidden" name="price[]" value="{{$price}}" />
                                         @endforeach
-                                        
+
                                     </ul>
                                 </div>
                                 <div class="your-order-bottom">
@@ -128,11 +141,9 @@
                                     <div id="faq" class="panel-group">
                                         <div class="panel panel-default single-my-account m-0">
                                             <div class="panel-heading my-account-title">
-                                                <h4 class="panel-title"><a data-bs-toggle="collapse"
-                                                        href="#my-account-3">Thanh toán khi nhận hàng</a></h4>
+                                                <h4 class="panel-title"><a data-bs-toggle="collapse" href="#my-account-3">Thanh toán khi nhận hàng</a></h4>
                                             </div>
-                                            <div id="my-account-3" class="panel-collapse collapse"
-                                                data-bs-parent="#faq">
+                                            <div id="my-account-3" class="panel-collapse collapse" data-bs-parent="#faq">
 
                                                 <div class="panel-body">
                                                     <p>Please send a check to Store Name, Store Street, Store Town,
