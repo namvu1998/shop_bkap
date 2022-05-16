@@ -206,7 +206,7 @@
                                     <div class="thumb">
                                         <a href="{{route('product.detail',$item->id)}}" class="image">
                                             <img src="{{asset('uploads/' . $item->image)}}" alt="Product" />
-                                            <img class="hover-image" src="{{url('assets')}}/images/product-image/2.jpg" alt="Product" />
+                                            <img class="hover-image" src="{{asset('uploads/' . $item->image)}}" alt="Product" />
                                         </a>
                                         <span class="badges">
                                             <span class="new">New</span>
@@ -216,8 +216,7 @@
                                             <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
                                             <a href="compare.html" class="action compare" title="Compare"><i class="pe-7s-refresh-2"></i></a>
                                         </div>
-                                        <button title="Add To Cart" class=" add-to-cart">Add
-                                            To Cart</button>
+                                        {{-- <a href="{{route('AddCart' , $item->id)}}" class=" add-to-cart">Add cart</a> --}}
                                     </div>
                                     <div class="content">
                                         <span class="ratings">
@@ -227,17 +226,22 @@
                                             <span class="rating-num">( 5 Review )</span>
                                         </span>
                                         <h5 class="title">
-                                            <a href="single-product.html">{{$item->name}}
+                                            <a href="{{route('product.detail',$item->id)}}">{{$item->name}}
                                             </a>
                                         </h5>
                                         @if($item->sale_price > 0)
                                         <span class="price">
                                             <span style="color:red" class="new">{{number_format(($item->price) - ($item->sale_price)) }} vnd</span>
                                         </span>
-                                        @endif
                                         <span class="price">
                                             <span class="new"><del>{{number_format($item->price)}} vnd</del></span>
                                         </span>
+                                        @else
+                                        <span class="price">
+                                            <span class="new">{{number_format($item->price)}} vnd</span>
+                                        </span>
+                                        @endif
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -255,7 +259,7 @@
                                     <div class="thumb">
                                         <a href="{{route('product.detail',$item->id)}}" class="image">
                                             <img src="{{asset('uploads/' . $item->image)}}" alt="Product" />
-                                            <img class="hover-image" src="{{url('assets')}}/images/product-image/2.jpg" alt="Product" />
+                                            <img class="hover-image" src="{{asset('uploads/' . $item->image)}}" alt="Product" />
                                         </a>
                                         <span class="badges">
                                             <span class="new">New</span>
@@ -265,8 +269,8 @@
                                             <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
                                             <a href="compare.html" class="action compare" title="Compare"><i class="pe-7s-refresh-2"></i></a>
                                         </div>
-                                        <button title="Add To Cart" class=" add-to-cart">Add
-                                            To Cart</button>
+                                        {{-- <a href="{{route('AddCart', $item->id)}}" class=" add-to-cart">Add cart</a> --}}
+
                                     </div>
                                     <div class="content">
                                         <span class="ratings">

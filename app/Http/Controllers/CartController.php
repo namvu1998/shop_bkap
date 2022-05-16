@@ -8,6 +8,7 @@ use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+use App\Helper\CartHelper;
 
 class CartController extends Controller
 {
@@ -15,87 +16,39 @@ class CartController extends Controller
     {
         return view('fe.pages.cart');
     }
-    public function AddCart($id)
+    public function AddCart(CartHelper $cart, Request $request)
     {
-        $products = Product::find($id);
-        $cart = session()->get('cart');
-        if (isset($cart[$id])) {
-            $cart[$id]['quantity'] = $cart[$id]['quantity'] + 1;
-        } else {
-            $cart[$id] = [
-                'name' => $products->name,
-                'price' => $products->sale_price ? $products->sale_price : $products->price,
-                'quantity' => 1,
-                'image' => $products->image
-            ];
-        }
-        session()->put('cart', $cart);
-        return response()->json([
-            'code' => 200,
-            'message' => 'success'
-        ], 200);
+        // unset($cart);
+        // dd($request->all());
+        // dd($request->all());
+        $carts = session()->get('cart');
+        // foreach($carts as $data){
+        //     dd($data);
+        // }
+        $cart->add($request->all());
+       
+        return redirect()->route('cart');
     }
     public function ShowCart()
     {
         $carts = session()->get('cart');
-        return view('pages.showcart', compact('carts'));
+        return view('fe.pages.cart', compact('carts'));
     }
-    public function UpdateCart(Request $request)
+    public function DeleteCart(CartHelper $cart, $id)
     {
-        if ($request->id && $request->quantity) {
-            $carts = session()->get('cart');
-            $carts[$request->id]['quantity'] = $request->quantity;
-            session()->put('cart', $carts);
-            $carts = session()->get('cart');
-            $cartComponent = view('pages.cart', compact('carts'))->render();
-            return response()->json(['cart' => $cartComponent, 'code' => 200], 200);
-        }
+        $cart->remove($id);
+        return redirect()->back();
     }
-    public function DeleteCart(Request $request)
+    public function UpdateCart(CartHelper $cart,Request $req)
     {
-        if ($request->id) {
-            $carts = session()->get('cart');
-            unset($carts[$request->id]);
-            session()->put('cart', $carts);
-            $carts = session()->get('cart');
-            $cartComponent = view('pages.cart', compact('carts'))->render();
-            return response()->json(['cart' => $cartComponent, 'code' => 200], 200);
-        }
+       
+        $cart->update($req->all());
+        return redirect()->back();
     }
-    public function getFormPay()
+    public function Clear(CartHelper $cart)
     {
-        $carts = session()->get('cart');
-        return view('pages.checkout', compact('carts'));
+        $cart->clear();
+        return redirect()->back();
     }
-    public function getSaveInfo(Request $request)
-    {
-        $cart = Session::get('cart');
-        // dd($cart);
-        if (Auth::check()) {
-            $invoice = new Order();
-            $invoice->user_id = Auth::id();
-            $invoice->phone = $request->phone;
-            $invoice->address = $request->address;
-            $invoice->note = $request->note;
-            $invoice->save();
-
-            foreach ($cart  as $product_id => $item) {
-                $invoice_details = new OrderDetail();
-                $invoice_details->invoice_id = $invoice->id;
-                $invoice_details->product_id = $product_id;
-                $invoice_details->quantity = $item['quantity'];
-                $invoice_details->unit_price = $item['price'];
-                $invoice_details->save();
-            }
-
-            Session::forget('cart');
-            return redirect()->route('thanhcong');
-        } else {
-            return redirect()->route('login')->with('message', 'Bạn chưa đăng nhập');
-        }
-    }
-    public function thanhcong()
-    {
-        return view('pages.order_success');
-    }
+    
 }

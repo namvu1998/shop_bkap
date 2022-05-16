@@ -13,7 +13,7 @@
 				<tr class="fw-bolder text-muted">
 					<th class="min-w-20px">Stt</th>
 					<th class="min-w-40px">Name</th>
-					<th class="min-w-40px">Full name</th>
+					{{-- <th class="min-w-40px">Full name</th> --}}
 					<th class="min-w-40px">Email</th>
 					<th class="min-w-40px">Phone</th>
 					<th class="min-w-40px">Address</th>
@@ -28,7 +28,6 @@
 				<tr>
 					<td>{{$loop->iteration}}</td>
 					<td>{{$item->name}}</td>
-					<td>{{$item->user->name}}</td>
 					<td>{{$item->email}}</td>
 					<td>{{$item->phone}}</td>
 					<td>{{$item->address}}</td>
