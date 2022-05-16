@@ -2,7 +2,9 @@
 
 namespace App\Helper;
 
+use App\Models\Attribute;
 use App\Models\Product;
+use App\Models\Product_variant;
 
 class CartHelper
 {
@@ -17,29 +19,37 @@ class CartHelper
     }
     public function add($product)
     {
-       
         $product_order = Product::find($product['product_id']);
-
+        $proV_color = Attribute::find($product['color_id_input']);
+        $proV_size = Attribute::find($product['size_id_input']);
         $item = [
             'id' => $product['product_id'],
             'name' => $product_order->name,
             'price' => $product_order->price,
             'sale_price' => $product_order->sale_price,
             'image' => $product_order->image,
-            'size' => $product['size_id_input'],
-            'color' => $product['color_id_input'],
+            'size' =>  $proV_size->value,
+            'color' => $proV_color->value,
             'quantity' => $product['quantity'],
         ];
-
-        if (isset($this->items[$product['product_id']])) {
-            foreach ($this->items[$product['product_id']] as $product1) {
-                $product1['quantity'] += $product['quantity'];
+        if (isset($this->items)) {
+            // dd(1);
+            $check = 0;
+            foreach ($this->items as $key=>$data) {
+                if($data['id']==$product['product_id'] && $data['color']==$proV_color->value && $data['size']==$proV_size->value){ 
+                    $this->items[$key]['quantity'] += $product['quantity'];
+                    $check = 1;
+                }
+            }
+           
+            if($check != 1){
+                $this->items[] = $item;
+            }else{
+                $check = 0;
             }
         } else {
             $this->items[] = $item;
         }
-        // dd($this->items);
-        // dd(session('cart'));
         session(['cart' => $this->items]);
     }
     public function remove($id)

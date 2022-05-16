@@ -209,6 +209,9 @@
                                             <img class="hover-image" src="{{asset('uploads/' . $item->image)}}" alt="Product" />
                                         </a>
                                         <span class="badges">
+                                            @if($item->sale_price)
+                                                <span class="sale">-{{$item->sale_price}}</span>
+                                            @endif
                                             <span class="new">New</span>
                                         </span>
                                         <div class="actions">
@@ -234,11 +237,11 @@
                                             <span style="color:red" class="new">{{number_format(($item->price) - ($item->sale_price)) }} vnd</span>
                                         </span>
                                         <span class="price">
-                                            <span class="new"><del>{{number_format($item->price)}} vnd</del></span>
+                                            <span  class="new"><del>{{number_format($item->price)}} vnd</del></span>
                                         </span>
                                         @else
                                         <span class="price">
-                                            <span class="new">{{number_format($item->price)}} vnd</span>
+                                            <span style="color:red" class="new">{{number_format($item->price)}} vnd</span>
                                         </span>
                                         @endif
                                         

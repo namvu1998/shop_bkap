@@ -36,8 +36,8 @@
                                     <th>Product Name</th>
                                     <th>Until Price</th>
                                     <th>Qty</th>
-                                    <th>Size</th>
                                     <th>Color</th>
+                                    <th>Size</th>
                                     <th>Total</th>
                                     <th>Action</th>
                                 </tr>
@@ -64,8 +64,8 @@
                                         <input class="cart-plus-minus-box" type="text" name="qtybutton[]" value="{{$product['quantity']}}" />
                                     </div>
                                 </td>
-                                <td></td>
-                                <td></td>
+                                <td> {{$product['color']}}</td>
+                                <td> {{$product['size']}}</td>
                                 <td>{{number_format($total)}} vnd</td>
                                
                                 <td class="product-remove">

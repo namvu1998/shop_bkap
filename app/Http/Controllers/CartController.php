@@ -18,15 +18,9 @@ class CartController extends Controller
     }
     public function AddCart(CartHelper $cart, Request $request)
     {
-        // unset($cart);
-        // dd($request->all());
-        // dd($request->all());
-        $carts = session()->get('cart');
-        // foreach($carts as $data){
-        //     dd($data);
-        // }
+        
+        // $carts = session()->get('cart');
         $cart->add($request->all());
-       
         return redirect()->route('cart');
     }
     public function ShowCart()

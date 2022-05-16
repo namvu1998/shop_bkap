@@ -1,8 +1,6 @@
 @extends('fe.master')
 @section('content')
-<style>
 
-</style>
 <!-- breadcrumb-area start -->
 <div class="breadcrumb-area">
     <div class="container">
@@ -366,16 +364,16 @@
         </div>
     </div>
 </div>
-<script src="{{url('assets')}}/js/vendor/vendor.min.js"></script>
+ <script src="{{url('assets')}}/js/vendor/vendor.min.js"></script>
 <script src="{{url('assets')}}/js/plugins/plugins.min.js"></script>
 
 <!-- Main Js -->
 <script src="{{url('assets')}}/js/main.js"></script>
 <!-- Related product Area End -->
 
-@section('js')
+{{-- @section('js')  --}}
 {{-- <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> --}}
-<script>
+{{-- <script>
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -431,6 +429,6 @@
             }
         });
     }
-</script>
+</script> --}}
 
  @stop

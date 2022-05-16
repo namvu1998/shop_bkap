@@ -10,9 +10,11 @@ use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('fe.pages.shop');
+        $pro = Product::where('name', 'like', "%" . $request->key . "%")->orderBy('id','DESC')->paginate(12);
+       
+        return view('fe.pages.shop', compact('pro'));
     }
     public function test()
     {
