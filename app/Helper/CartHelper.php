@@ -11,12 +11,13 @@ class CartHelper
     public $total_price = 0;
     public function __construct()
     {
-        $this->items[] = session('cart') ? session('cart') : [];
+        $this->items = session('cart') ? session('cart') : [];
         $this->total_price = $this->get_total_price();
         $this->total_quantity = $this->get_total_quantity();
     }
-    public function add($product, $quantity = 1)
+    public function add($product)
     {
+       
         $product_order = Product::find($product['product_id']);
 
         $item = [
@@ -32,13 +33,14 @@ class CartHelper
 
         if (isset($this->items[$product['product_id']])) {
             foreach ($this->items[$product['product_id']] as $product1) {
-                $product1['quantity'] += $quantity;
+                $product1['quantity'] += $product['quantity'];
             }
         } else {
-            $this->items[$product['product_id']] = [$item];
+            $this->items[] = $item;
         }
-
-        session(['cart' => $item]);
+        // dd($this->items);
+        // dd(session('cart'));
+        session(['cart' => $this->items]);
     }
     public function remove($id)
     {
@@ -46,12 +48,25 @@ class CartHelper
             unset($this->items[$id]);
         }
     }
-    public function update($id, $quantity = 1)
+    public function update($req)
     {
-        if (isset($this->items[$id])) {
-            // $this->items[$id]['quantity'] = $quantity;
-        }
-        session(['cart' => $this->items]);
+        $finaldata=[];
+            foreach($req['product_id'] as $key=>$product_id){
+                if ($product_id) {
+                    foreach($req['qtybutton'] as $key1=>$qty){
+                        var_dump($key1);
+                        if($key1==$key){
+                            foreach($this->items as $data){
+                             $data['quantity'] = $qty;
+                            }
+                            $finaldata[]=$data; 
+                        }
+                    }
+                }            
+            }
+        
+        session(['cart' => $finaldata]);
+       
     }
     public function clear()
     {

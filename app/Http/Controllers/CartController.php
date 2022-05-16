@@ -18,8 +18,16 @@ class CartController extends Controller
     }
     public function AddCart(CartHelper $cart, Request $request)
     {
+        // unset($cart);
+        // dd($request->all());
+        // dd($request->all());
+        $carts = session()->get('cart');
+        // foreach($carts as $data){
+        //     dd($data);
+        // }
         $cart->add($request->all());
-        return redirect()->back();
+       
+        return redirect()->route('cart');
     }
     public function ShowCart()
     {
@@ -31,9 +39,10 @@ class CartController extends Controller
         $cart->remove($id);
         return redirect()->back();
     }
-    public function UpdateCart(CartHelper $cart, $id, $quantity)
+    public function UpdateCart(CartHelper $cart,Request $req)
     {
-        $cart->update($id, $quantity);
+       
+        $cart->update($req->all());
         return redirect()->back();
     }
     public function Clear(CartHelper $cart)
@@ -41,4 +50,5 @@ class CartController extends Controller
         $cart->clear();
         return redirect()->back();
     }
+    
 }

@@ -44,7 +44,7 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::post('/add-cart', [CartController::class, 'AddCart'])->name('AddCart');
 // Route::get('/add-cart/{id}', [CartController::class, 'AddCart'])->name('AddCart');
 // Route::get('/show-cart', [CartController::class, 'ShowCart'])->name('ShowCart');
-Route::get('/update-cart/{id}/{quantity}', [CartController::class, 'UpdateCart'])->name('UpdateCart');
+Route::post('/update-cart', [CartController::class, 'UpdateCart'])->name('UpdateCart');
 Route::get('/delete-cart/{id}', [CartController::class, 'DeleteCart'])->name('DeleteCart');
 Route::get('/clear-cart', [CartController::class, 'Clear'])->name('Clear');
 Route::get('/thanh-toan', [CartController::class, 'getFormPay'])->name('getFormPay');
@@ -57,7 +57,7 @@ Route::group([
 });
 
 //Checkout
-Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+
 Route::prefix('checkout')->group(function () {
     Route::get('/', [CheckoutController::class, 'index'])->name('checkout');
     Route::post('/', [CheckoutController::class, 'create'])->name('order.create');

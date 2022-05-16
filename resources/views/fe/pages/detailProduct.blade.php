@@ -30,11 +30,11 @@
                 <!-- Swiper -->
                 <div class="swiper-container zoom-top">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide zoom-image-hover">
+                        <div class="swiper-slide ">
                             <img class="img-responsive m-auto" src="{{asset('uploads/' . $detailProduct->image)}}" alt="">
                         </div>
                         @foreach($detailProduct->images as $item)
-                        <div class="swiper-slide zoom-image-hover">
+                        <div class="swiper-slide ">
                             <img class="img-responsive m-auto" src="{{asset('uploads/' . $item->images)}}" alt="">
                         </div>
                         @endforeach
@@ -87,8 +87,8 @@
                                 </ul>
                             </div>
                         </div>
-                        <h4>đây là input ID COLOR</h4>
-                        <input type="text" name="color_id_input">
+                        
+                        <input type="hidden" name="color_id_input">
                         <!-- Sidebar single item -->
                         <div class="pro-details-size-info d-flex align-items-center">
                             <span>Size</span>
@@ -100,8 +100,8 @@
                                 </ul>
                             </div>
                         </div>
-                        <h4>đây là input ID SIZE</h4>
-                        <input type="text" name="size_id_input">
+                        
+                        <input type="hidden" name="size_id_input">
                         <div class="hung_qty"></div>
                         <p class="m-0">{!!$detailProduct->description!!}</p>
                         <div class="pro-details-quality">
@@ -372,9 +372,9 @@
 <!-- Main Js -->
 <script src="{{url('assets')}}/js/main.js"></script>
 <!-- Related product Area End -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-@section('js')
 
+@section('js')
+{{-- <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> --}}
 <script>
     $.ajaxSetup({
         headers: {
@@ -397,16 +397,17 @@
             success: function(data) {
                 var _html = '';
                 for (const key of data) {
-                    _html += ` <li><a class=" gray " href="javascript:void(0)" onclick="getSize(${key['size_id']},${key['product_id']})">${key['value']}</a></li>`
+                    _html += ` <li><a class="gray" href="javascript:void(0)" onclick="getSize(${key['size_id']},${key['product_id']}, $(this))">${key['value']}</a></li>`
                 }
                 $('.hung_color').html(_html);
 
-            }
+            },
         });
     });
 
-    function getSize(id, product_id) {
-        console.log(id);
+    function getSize(id, product_id, element) {
+        $('.gray').removeClass('active-size')
+        element.addClass('active-size')
         $('input[name=size_id_input').val(id);
         var color_id = $('input[name=color_id_input').val();
         $.ajax({
@@ -418,7 +419,7 @@
                 size_id: id
             },
             success: function(data) {
-
+                
                 $('.hung_qty').html(` <div class="pro-details-sku-info pro-details-same-style  d-flex">
                         <span>QTY: </span>
                         <ul class="d-flex">
@@ -431,4 +432,5 @@
         });
     }
 </script>
-@stop
+
+ @stop
