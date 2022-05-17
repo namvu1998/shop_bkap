@@ -61,6 +61,7 @@ Route::group([
 Route::prefix('checkout')->group(function () {
     Route::get('/', [CheckoutController::class, 'index'])->name('checkout');
     Route::post('/', [CheckoutController::class, 'create'])->name('order.create');
+   
 });
 
 
@@ -86,6 +87,7 @@ Route::group(['middleware' => 'check_login'], function () {
         Route::prefix('admin')->group(function () {
             Route::get('/', [HomeController::class, 'index'])->name('admin.index');
             Route::get('/order-detail/{id}', [HomeController::class, 'show'])->name('orderDetail');
+            Route::post('/order-detail/{id}', [HomeController::class, 'updateStatus'])->name('updateStatus'); 
 
 
             Route::prefix('category')->group(function () {
@@ -99,22 +101,13 @@ Route::group(['middleware' => 'check_login'], function () {
                 Route::get('/unacive/{cate_id}', [CategoryController::class, 'unactive'])->name('cate.unactive');
             });
 
-            Route::prefix('attribute_value')->group(function () {
+            Route::prefix('attribute')->group(function () {
                 Route::get('/', [AttributeValueController::class, 'index'])->name('admin.attributeValue.index');
                 Route::get('/create/{id?}', [AttributeValueController::class, 'create'])->name('admin.attributeValue.create');
                 Route::post('/create/{id?}', [AttributeValueController::class, 'store'])->name('admin.attributeValue.store');
                 Route::get('/update/{id}', [AttributeValueController::class, 'edit'])->name('admin.attributeValue.edit');
                 Route::post('/update/{id}', [AttributeValueController::class, 'update']);
                 Route::get('/{id}', [AttributeValueController::class, 'delete'])->name('admin.attributeValue.delete');
-            });
-
-            Route::prefix('attribute')->group(function () {
-                Route::get('/', [AttributeController::class, 'index'])->name('admin.attribute.index');
-                Route::get('/create', [AttributeController::class, 'create'])->name('admin.attribute.create');
-                Route::post('/create', [AttributeController::class, 'store']);
-                Route::get('/update/{id}', [AttributeController::class, 'edit'])->name('admin.attribute.edit');
-                Route::post('/update/{id}', [AttributeController::class, 'update']);
-                Route::get('/{id}', [AttributeController::class, 'delete'])->name('admin.attribute.delete');
             });
 
             Route::prefix('product')->group(function () {

@@ -38,6 +38,20 @@
 </head>
 
 <body>
+    <style>
+        .box-color{
+            width:30px;
+            height:30px;
+            border-radius: 50%;
+        }
+        .box-color-1{
+            width:15px;
+            height:15px;
+            border-radius: 50%;
+            margin-left: 20px;
+            margin-right: 20px
+        }
+    </style>
     @include('fe.layout.header')
     @yield('content')
     @include('fe.layout.footer')

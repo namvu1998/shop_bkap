@@ -18,7 +18,12 @@
 </div>
 
 <!-- breadcrumb-area end -->
-
+@if(Session::has('success'))
+<div class="alert alert-info alert-dismissible fade show" role="alert">
+    <strong>{{Session::get('success')}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
 <!-- Cart Area Start -->
 <div class="cart-main-area pt-100px pb-100px">
     <div class="container">
@@ -39,7 +44,7 @@
                                     <th>Color</th>
                                     <th>Size</th>
                                     <th>Total</th>
-                                    <th>Action</th>
+                                    <th>Delete</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -50,9 +55,9 @@
                                 <input type="hidden" name="product_id[]" value="{{$product['id']}}">
                                 <?php $total = ($product['price'] - $product['sale_price']) * $product['quantity'] ?>
                                 <?php $sub_total += $total ?>
-                                <td>{{$key +1}}</td>
+                                <td>{{$loop->iteration}}</td>
                                 <td class="product-thumbnail">
-                                    <a href="#"><img class="img-responsive ml-15px" src="https://scontent.fhan2-1.fna.fbcdn.net/v/t39.30808-6/280213946_167237939073589_1444542955764030529_n.jpg?stp=dst-jpg_p526x296&_nc_cat=1&ccb=1-6&_nc_sid=8bfeb9&_nc_ohc=7GAsHm1MkNYAX-WsqcN&_nc_ht=scontent.fhan2-1.fna&oh=00_AT8b7Q3Wxlr--t9Qq0xS6_sOme3lS6pElv6XjO2zAgSy3g&oe=6284CE75" alt="" /></a>
+                                    <a href="{{route('product.detail',$product['id'])}}"><img class="img-responsive ml-15px" src="{{asset('uploads/' . $product['image'])}}" alt="" /></a>
                                 </td>
                                 <td class="product-name"><a href="#">{{$product['name']}}</a></td>
                                 <td class="product-price-cart"><span class="amount">
@@ -64,13 +69,15 @@
                                         <input class="cart-plus-minus-box" type="text" name="qtybutton[]" value="{{$product['quantity']}}" />
                                     </div>
                                 </td>
-                                <td> {{$product['color']}}</td>
+                                <td>
+                                    <div class="box-color" style="margin: auto;background:{{$product['color']}}"></div>
+                                </td>
                                 <td> {{$product['size']}}</td>
                                 <td>{{number_format($total)}} vnd</td>
                                
                                 <td class="product-remove">
-                                    <a href="{{route('UpdateCart',$product['id'])}}"><i class="fa fa-pencil"></i></a>
-                                    <a href="#"><i class="fa fa-times"></i></a>
+                                    {{-- <a href="{{route('UpdateCart',$product['id'])}}"><i class="fa fa-pencil"></i></a> --}}
+                                    <a href="{{route('DeleteCart',$key)}}"><i class="fa fa-times"></i></a>
                                 </td>
                                 </tr>
                                 @endforeach
@@ -157,7 +164,10 @@
                             </div>
                             @foreach($cart->items as $key => $product)
                             <?php $total = ($product['price'] - $product['sale_price']) * $product['quantity'] ?>
-                            <h5> {{$product['name']}} : <span>{{number_format($total)}} vnd </span></h5>
+                            <h5 style="display: flex;justify-content: space-between" >
+                                <div style="width: 50% ;display: flex">{{$product['name']}} : <div class="box-color-1" style="background:{{$product['color']}}"></div> {{$product['size']}}</div> 
+                                <span>{{number_format($total)}} vnd </span>
+                            </h5>
                             @endforeach
                             {{-- <div class="total-shipping">
                                 <h5>Total shipping</h5>

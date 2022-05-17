@@ -85,7 +85,9 @@
                                 </ul>
                             </div>
                         </div>
-                        
+                        @error('color')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                         <input type="hidden" name="color_id_input">
                         <!-- Sidebar single item -->
                         <div class="pro-details-size-info d-flex align-items-center">
@@ -98,7 +100,9 @@
                                 </ul>
                             </div>
                         </div>
-                        
+                        @error('size')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                         <input type="hidden" name="size_id_input">
                         <div class="hung_qty"></div>
                         <p class="m-0">{!!$detailProduct->description!!}</p>
@@ -108,10 +112,15 @@
                                 <input class="cart-plus-minus-box" type="text" name="quantity" value="1" />
                                 <div class="inc qtybutton">+</div>
                             </div>
-                            <div class="pro-details-cart">
-                                <button class="add-cart" type="submit">Add cart</button>
-                                <!-- <a class="add-cart" href="{{route('AddCart', $detailProduct->id)}}">Add Cart</a> -->
-                            </div>
+                            @if($checkColorId && $checkSizeId)
+                                <div class="pro-details-cart">
+                                    <button class="add-cart" type="submit">Add cart</button>
+                                </div>
+                            @else 
+                                <div class="pro-details-cart">
+                                    <button class="add-cart" disabled style="background: black">Hết hàng</button>
+                                </div>
+                            @endif
                             <div class="pro-details-compare-wishlist pro-details-wishlist ">
                                 <a href="wishlist.html"><i class="pe-7s-like"></i></a>
                             </div>
@@ -370,65 +379,5 @@
 <!-- Main Js -->
 <script src="{{url('assets')}}/js/main.js"></script>
 <!-- Related product Area End -->
-
-{{-- @section('js')  --}}
-{{-- <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> --}}
-{{-- <script>
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    $('.color').click(function() {
-
-        var idPro = $(this).attr('product_id');
-        var idColor = $(this).attr('color_id');
-        console.log(idColor);
-        $('input[name=color_id_input').val(idColor);
-        $.ajax({
-            type: 'POST',
-            url: '/getSize',
-            data: {
-                idPro: idPro,
-                idColor: idColor
-            },
-            success: function(data) {
-                var _html = '';
-                for (const key of data) {
-                    _html += ` <li><a class="gray" href="javascript:void(0)" onclick="getSize(${key['size_id']},${key['product_id']}, $(this))">${key['value']}</a></li>`
-                }
-                $('.hung_color').html(_html);
-
-            },
-        });
-    });
-
-    function getSize(id, product_id, element) {
-        $('.gray').removeClass('active-size')
-        element.addClass('active-size')
-        $('input[name=size_id_input').val(id);
-        var color_id = $('input[name=color_id_input').val();
-        $.ajax({
-            type: 'POST',
-            url: '/getQty',
-            data: {
-                product_id: product_id,
-                color_id: color_id,
-                size_id: id
-            },
-            success: function(data) {
-                
-                $('.hung_qty').html(` <div class="pro-details-sku-info pro-details-same-style  d-flex">
-                        <span>QTY: </span>
-                        <ul class="d-flex">
-                            <li>
-                                <a href="#">${data.quantity}</a>
-                            </li>
-                        </ul>
-                    </div>`);
-            }
-        });
-    }
-</script> --}}
 
  @stop

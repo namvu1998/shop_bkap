@@ -30,9 +30,9 @@
                         <td>{{$item->name}}</td>
                         <td> 
                             @if($item->name=='color')
-                                <div style ="width:50px; height:30px; background:{{$item->value}}"></div>
+                                <div style ="width:30px; height:30px;border-radius: 50%; background:{{$item->value}}"></div>
                             @else
-                                {{$item->value}}
+                                <div style="padding-left: 12px">{{$item->value}}</div>
                             @endif
                         </td>
                         <td>
@@ -65,7 +65,7 @@
             </tbody>
             <!--end::Table body-->
         </table>
-        {{-- {{$attribute_value->links()}} --}}
+        {{$attribute->links()}}
        </div>
       
     </div>

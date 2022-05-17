@@ -41,6 +41,7 @@
             <!--end::Table head-->
             <!--begin::Table body-->
             <tbody>
+
                 @foreach ($products as $item)
                 <tr>
                     <td>{{$loop->iteration}}</td>
@@ -96,7 +97,8 @@
             </tbody>
             <!--end::Table body-->
         </table>
-        {{-- {{$category->links()}} --}}
+        {{-- @dd($products->links()) --}}
+        {{$products->links()}}
     </div>
 
 </div>

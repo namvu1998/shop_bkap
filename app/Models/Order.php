@@ -15,7 +15,13 @@ class Order extends Model
         "address",
         "phone",
         "note",
+        "status",
     ];
+    const ORDER_NEW = '1';
+    const ORDER_PENDING = '2';
+    const ORDER_SHIPING = '3';
+    const ORDER_COMPLETE = '4';
+    const ORDER_CANCEL = '5';
     public function user()
     {
         return $this->belongsTo(User::class);

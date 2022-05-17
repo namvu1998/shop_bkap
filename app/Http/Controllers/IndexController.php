@@ -11,7 +11,8 @@ class IndexController extends Controller
     public function index()
     {
         $products = Product::latest()->paginate(8);
-        return view('fe.pages.home', compact('products'));
+        $product_sale = Product::where('sale_price','>','0')->latest()->paginate(8);
+        return view('fe.pages.home', compact('products','product_sale'));
     }
     public function detailProduct($id)
     {

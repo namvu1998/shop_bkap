@@ -16,9 +16,9 @@ class CategoryController extends Controller
     public function index(Request $req){
         try{
         if($req->key == null){
-            $category =  Category::latest()->paginate(3);
+            $category =  Category::latest()->paginate(12);
         }else{
-            $category = Category::where('name', 'like', "%" . $req->key. "%")->latest()->paginate(3);
+            $category = Category::where('name', 'like', "%" . $req->key. "%")->latest()->paginate(12);
         }
         if($req->ajax())
         {

@@ -18,6 +18,7 @@
 					<th class="min-w-40px">Phone</th>
 					<th class="min-w-40px">Address</th>
 					<th class="min-w-40px">Note</th>
+					<th class="min-w-40px">Status</th>
 					<th class="min-w-40px">Detail</th>
 				</tr>
 			</thead>
@@ -32,6 +33,19 @@
 					<td>{{$item->phone}}</td>
 					<td>{{$item->address}}</td>
 					<td>{{$item->note}}</td>
+					<td>
+						@if ($item->status == 1)
+							<div>Đang sử lý</div>
+						@elseif($item->status == 2)
+							<div>Đã xử lý</div>
+						@elseif($item->status == 3)
+							<div>Đang giao hàng</div>
+						@elseif($item->status == 4)
+							<div>Hoàn thành</div>
+						@elseif($item->status == 5)
+							<div>Hoàn trả</div>
+						@endif
+					</td>
 					<td><a class="btn btn-primary text-btn" href="{{route('orderDetail', $item->id)}}">Detail</a></td>
 				</tr>
 				@endforeach
