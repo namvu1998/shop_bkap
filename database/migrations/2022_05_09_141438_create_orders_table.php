@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('phone');
             $table->string('address');
             $table->string('note')->nullable();
+            $table->enum('status', ['1','2','3','4','5']);
             $table->timestamps();
         });
     }

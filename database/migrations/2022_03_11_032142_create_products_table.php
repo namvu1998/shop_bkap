@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->integer('price');
-            $table->integer('sale_price')->nullable();
+            $table->integer('sale_price')->default(0)->nullable();
             $table->integer('category_id');
             $table->string('image');
             $table->string('content');

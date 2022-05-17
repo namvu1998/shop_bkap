@@ -26,17 +26,20 @@ class CheckoutRequest extends FormRequest
         return [
             'name' => 'required',
             'address' => 'required',
-            'phone' => 'required',
+            'phone' => 'required|digits:10|alpha_num|regex:/^(0)+([1-9][0-9]{8})$/',
             'email' => 'required|email',
-            'note' => 'required|max:300',
+            'note' => 'max:500',
         ];
     }
     public function messages()
     {
         return [
-
             'required' => ':attribute không được để trống!',
-            'email.email' => 'Email không đúng định dạng',
+            'phone.digits' => 'phone phải 10 số!',
+            'phone.alpha_num' => 'phone phải là số!',
+            'phone.regex' => 'Đầu số không đúng định dạng!',
+            'email.email' => 'Email không đúng định dạng!',
+            'note.max' => 'Nội dung vượt quá giới hạn',
         ];
     }
     public function attributes()

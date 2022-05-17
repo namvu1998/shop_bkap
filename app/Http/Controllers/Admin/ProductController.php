@@ -23,13 +23,16 @@ class ProductController extends Controller
     {
         try {
             if ($req->key == null) {
-                $products =  Product::latest()->paginate(3);
+                $products =  Product::latest()->orderBy('id','DESC')->paginate(15);;
             } else {
-                $products = Product::where('name', 'like', "%" . $req->key . "%")->latest()->paginate(3);
+                $products = Product::where('name', 'like', "%" . $req->key . "%")->latest()->orderBy('id','DESC')->paginate(15);
             }
-            if ($req->ajax()) {
-                return view('admin.product.pagination', compact('products'));
+            
+            if ($req->ajax())
+            {
+                return view('admin.product.ajax_index', compact('products'));
             }
+
             return view('admin.product.index', compact('products'));
         } catch (\Throwable $th) {
             throw $th;
@@ -112,7 +115,7 @@ class ProductController extends Controller
                 $fileName = $file->getClientOriginalName();
                 $file->move('uploads', $fileName);
                 $request->merge(['image' => $fileName]);
-                $product = Product::create([
+                $product->update([
                     'name' => $request->name,
                     'slug' => $request->sl,
                     'price' => $request->price,

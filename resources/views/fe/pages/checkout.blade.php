@@ -49,7 +49,7 @@
                             <div class="col-lg-12 ">
                                 <div class="billing-info mb-4">
                                     <label>Họ tên</label>
-                                    <input type="text" name="name" value="{{Auth::user()->name}}" />
+                                    <input type="text" name="name" value="{{Auth::user()->name}}" value="{{old('name')}}"/>
                                     @error('name')
                                     <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -58,7 +58,7 @@
                             <div class="col-lg-12">
                                 <div class="billing-info mb-4">
                                     <label>Địa chỉ</label>
-                                    <input type="text" name="address" />
+                                    <input type="text" name="address" value="{{old('address')}}"/>
                                     @error('address')
                                     <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -67,7 +67,7 @@
                             <div class="col-lg-6 col-md-6">
                                 <div class="billing-info mb-4">
                                     <label>Số điện thoại</label>
-                                    <input type="text" name="phone" />
+                                    <input type="text" name="phone" value="{{old('phone')}}"/>
                                     @error('phone')
                                     <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -76,7 +76,7 @@
                             <div class="col-lg-6 col-md-6">
                                 <div class="billing-info mb-4">
                                     <label>Địa chỉ email</label>
-                                    <input type="text" name="email" value="{{Auth::user()->email}}" />
+                                    <input type="text" name="email" value="{{Auth::user()->email}}" value="{{old('email')}}" />
                                     @error('email')
                                     <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -87,7 +87,7 @@
                             {{-- <h4>Additional information</h4> --}}
                             <div class="additional-info">
                                 <label>Ghi chú đơn hàng</label>
-                                <textarea placeholder="Ghi chú cho đơn hàng của bạn." name="note"></textarea>
+                                <textarea placeholder="Ghi chú cho đơn hàng của bạn." name="note" value="{{old('address')}}"></textarea>
                                 @error('note')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -116,8 +116,8 @@
                                         <?php $sub_total += $total ?>
                                         <input type="hidden" name="quantity[]" value="{{$product['quantity']}}" />
                                         <input type="hidden" name="product_id[]" value="{{$product['id']}}" />
-                                        <input type="hidden" name="color_id[]" value="{{$product['color']}}" />
-                                        <input type="hidden" name="size_id[]" value="{{$product['size']}}" />
+                                        <input type="hidden" name="color[]" value="{{$product['color']}}" />
+                                        <input type="hidden" name="size[]" value="{{$product['size']}}" />
                                         <input type="hidden" name="price[]" value="{{$price}}" />
                                         @endforeach
 

@@ -54,8 +54,11 @@ class CartHelper
     }
     public function remove($id)
     {
+        // unset($this->items[$id]);
+        // dd($this->items);
         if (isset($this->items[$id])) {
             unset($this->items[$id]);
+            session(['cart' => $this->items]);  
         }
     }
     public function update($req)

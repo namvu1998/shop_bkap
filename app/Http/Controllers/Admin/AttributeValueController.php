@@ -14,7 +14,7 @@ class AttributeValueController extends Controller
 {
     public function index(Request $req){
         try{
-            $attribute = Attribute::all();
+            $attribute = Attribute::latest()->paginate(3);
             if($req->ajax())
             {
                 return view('admin.attributeValue.pagination',compact('attribute'));

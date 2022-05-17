@@ -55,7 +55,12 @@
                     <!-- Right Side End -->
                 </div>
                 <!-- Shop Top Area End -->
-
+                @if(Session::has('success'))
+                    <div class="alert alert-info alert-dismissible fade show" role="alert">
+                        <strong>{{Session::get('success')}}</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
                 <!-- Shop Bottom Area Start -->
                 <div class="shop-bottom-area">
 
@@ -630,12 +635,22 @@
                         </div>
                     </div>
                     <!-- Tab Content Area End -->
-
+                    
+                    <br>
+                    <br>
+                    <div style="display: flex;justify-content: center;">{{$pro->links()}}</div>
                     <!--  Pagination Area Start -->
-                    <div class="load-more-items text-center mt-30px0px" data-aos="fade-up">
-                        <a href="#" class="btn btn-lg btn-primary btn-hover-dark m-auto"> Load More <i
-                                class="fa fa-refresh ml-15px" aria-hidden="true"></i></a>
-                    </div>
+                    {{-- <div class="pro-pagination-style text-center" data-aos="fade-up" data-aos-delay="200">
+                        <div class="pages">
+                            <ul>
+                                <li class="li"><a class="page-link" href="#"><i class="fa fa-angle-left"></i></a></li>
+                                <li class="li"><a class="page-link active" href="#">1</a></li>
+                                <li class="li"><a class="page-link" href="#">2</a></li>
+                                <li class="li"><a class="page-link" href="#"><i class="fa fa-angle-right"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div> --}}
                     <!--  Pagination Area End -->
                 </div>
                 <!-- Shop Bottom Area End -->

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Helper\CartHelper;
+use App\Http\Requests\CartRequest;
 
 class CartController extends Controller
 {
@@ -16,10 +17,8 @@ class CartController extends Controller
     {
         return view('fe.pages.cart');
     }
-    public function AddCart(CartHelper $cart, Request $request)
+    public function AddCart(CartHelper $cart, CartRequest $request)
     {
-        
-        // $carts = session()->get('cart');
         $cart->add($request->all());
         return redirect()->route('cart');
     }
