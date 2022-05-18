@@ -39,7 +39,20 @@ License: For each use you must have a valid license purchased only from above li
 	<!--end::Head-->
 	<!--begin::Body-->
     <body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
-
+		<style>
+			.box-color{
+				width:30px;
+				height:30px;
+				border-radius: 50%;
+			}
+			.box-color-1{
+				width:15px;
+				height:15px;
+				border-radius: 50%;
+				margin-left: 20px;
+				margin-right: 20px
+			}
+		</style>
         @include('admin.layout.menu')
         @include('admin.layout.topbar')
 		
