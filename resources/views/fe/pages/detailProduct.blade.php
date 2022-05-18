@@ -132,7 +132,7 @@
                             <span>SKU: </span>
                             <ul class="d-flex">
                                 <li>
-                                    <a href="#">Ch-256xl</a>
+                                    <a href="#">{{$detailProduct->shoe_code}}</a>
                                 </li>
                             </ul>
                         </div>
@@ -140,10 +140,8 @@
                             <span>Categories: </span>
                             <ul class="d-flex">
                                 <li>
-                                    <a href="#">Fashion.</a>
-                                </li>
-                                <li>
-                                    <a href="#">eCommerce</a>
+                                    {{-- @dd($detailProduct->cate); --}}
+                                    <a href="#"></a>
                                 </li>
                             </ul>
                         </div>

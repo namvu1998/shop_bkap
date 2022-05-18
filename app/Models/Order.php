@@ -16,6 +16,7 @@ class Order extends Model
         "phone",
         "note",
         "status",
+        "user_id",
     ];
     const ORDER_NEW = '1';
     const ORDER_PENDING = '2';

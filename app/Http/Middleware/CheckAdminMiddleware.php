@@ -17,9 +17,14 @@ class CheckAdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->role !== 1) {
+         if (Auth::check() == false) {
             return redirect()->route('home');
-        }
+         }else{
+            if (Auth::user()->role !== 1) {
+                return redirect()->route('home');
+            }
+         }
+        
         return $next($request);
     }
 }

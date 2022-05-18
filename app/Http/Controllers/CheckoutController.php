@@ -18,12 +18,14 @@ class CheckoutController extends Controller
         return view('fe.pages.checkout', compact('carts'));
     }
     public function create(CartHelper $cart,CheckoutRequest $req){
+        // dd($req->user_id);
         $order=Order::create([
             'name'=>$req->name,
             'email'=>$req->email,
             'phone'=>$req->phone,
             'address'=>$req->address,
             'note'=>$req->note,
+            'user_id'=>$req->user_id,
         ]);
         foreach($req->product_id as $key => $data){
             // dd($data);

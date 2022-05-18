@@ -39,6 +39,7 @@
 <!-- checkout area start -->
 <form action="{{route('order.create')}}" method="POST">
     @csrf
+    <input type="hidden" name="user_id" value="{{Auth::user()->id}}" />
     <div class="checkout-area pt-100px pb-100px">
         <div class="container">
             <div class="row">

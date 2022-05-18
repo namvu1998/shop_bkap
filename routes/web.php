@@ -54,6 +54,7 @@ Route::get('/thanh-cong', [CartController::class, 'thanhcong'])->name('thanhcong
 Route::group([
     'middleware' => ['check_login'],
 ], function () {
+    
 });
 
 //Checkout

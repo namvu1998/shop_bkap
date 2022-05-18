@@ -108,7 +108,7 @@
 											<span class="menu-title">Attribute</span>
 										</a>
 									</div>
-									<div class="menu-item">
+									{{-- <div class="menu-item">
 										<a class="menu-link" href="../../demo1/dist/pages/profile/overview.html">
 											<span class="menu-icon">
 												<!--begin::Svg Icon | path: icons/duotone/Code/Compiling.svg-->
@@ -122,7 +122,7 @@
 											</span>
 											<span class="menu-title">Brand</span>
 										</a>
-									</div>					
+									</div>					 --}}
 								</div>
 
 								{{-- <div data-kt-menu-trigger="click" class="menu-item menu-accordion">

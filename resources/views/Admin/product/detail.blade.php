@@ -36,7 +36,7 @@
 
                     <td>{{$loop->iteration}}</td>
                     <td>
-                        <div class="box-color" style="background:{{$item->attr_color->value }}"></div>
+                        <div class="box-color" style="background:{{$item->attr_color->value}}"></div>
                     </td>
                     <td>{{$item->attr_size->value }}</td>
                     <td>{{$item->quantity}}</td>
