@@ -23,9 +23,9 @@ class ProductController extends Controller
     {
         try {
             if ($req->key == null) {
-                $products =  Product::latest()->orderBy('id','DESC')->paginate(15);;
+                $products =  Product::orderBy('id','DESC')->paginate(15);;
             } else {
-                $products = Product::where('name', 'like', "%" . $req->key . "%")->latest()->orderBy('id','DESC')->paginate(15);
+                $products = Product::where('name', 'like', "%" . $req->key . "%")->orderBy('id','DESC')->paginate(15);
             }
             
             if ($req->ajax())
