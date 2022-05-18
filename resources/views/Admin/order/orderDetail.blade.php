@@ -2,6 +2,7 @@
 @section('content')
 <div class="container">
     <form action="{{route('orderDetail',$id)}}" method="POST">
+        <h3>Trạng thái đơn hàng</h3>
         @csrf
         <select name="status" id="" >
             <option value="1" {{$order->status == '1' ? 'selected' : ''}}>Đang sửa lý</option>
@@ -12,6 +13,8 @@
         </select>
         <button type="submit">Thay đổi</button> 
     </form>
+    <br>
+    <br>
     @if(Session::has('success'))
     <div class="alert alert-info alert-dismissible fade show" role="alert">
         <strong>{{Session::get('success')}}</strong>
@@ -23,12 +26,12 @@
             <!--begin::Table head-->
             <thead>
                 <tr class="fw-bolder text-muted">
-                    <th class="min-w-20px">ID</th>
-                    <th class="min-w-40px">Product</th>
-                    <th class="min-w-40px">Color</th>
+                    <th class="min-w-20px">STT</th>
+                    <th class="min-w-40px">Sản phẩm</th>
+                    <th class="min-w-40px">Màu</th>
                     <th class="min-w-40px">Size</th>
-                    <th class="min-w-40px">Quantity</th>
-                    <th class="min-w-40px">Price</th>
+                    <th class="min-w-40px">Số lượng</th>
+                    <th class="min-w-40px">Giá</th>
                 </tr>
             </thead>
             <!--end::Table head-->

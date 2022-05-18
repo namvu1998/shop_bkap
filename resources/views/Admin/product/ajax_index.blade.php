@@ -6,11 +6,11 @@
             <div class="container-fluid">
 
                 <a href="{{route('admin.product.create')}}" class="btn btn-sm btn-primary" id="kt_toolbar_primary_button">
-                    Create
+                    Thêm mới
                 </a>
                 <form class="d-flex">
-                    <input class="form-control me-2" name="key" type="search" placeholder="Search" aria-label="Search">
-                    <input class="btn btn-outline-success" value="ok" type="submit">
+                    <input class="form-control me-2" name="key" type="search" placeholder="Tìm kiếm" aria-label="Search">
+                    <input class="btn btn-outline-success" value="Tìm" type="submit">
                 </form>
             </div>
         </nav>
@@ -25,17 +25,17 @@
             <!--begin::Table head-->
             <thead>
                 <tr class="fw-bolder text-muted">
-                    <th class="min-w-20px">ID</th>
-                    <th class="min-w-40px">Name</th>
-                    <th class="min-w-40px">Shoe code</th>
-                    <th class="min-w-40px">Price</th>
-                    <th class="min-w-40px">Sale price</th>
-                    <th class="min-w-40px">Content</th>
-                    <th class="min-w-40px">Description</th>
-                    <th class="min-w-40px">Image</th>
-                    <th class="min-w-40px">Status</th>
-                    <th class="min-w-20px">Actions</th>
-                    <th class="min-w-40px">Detail</th>
+                    <th class="min-w-20px">Stt</th>
+                    <th class="min-w-40px">Tên SP</th>
+                    <th class="min-w-40px">MSP</th>
+                    <th class="min-w-40px">Giá</th>
+                    <th class="min-w-40px">KM</th>
+                    <th class="min-w-40px">Mô tả</th>
+                    <th class="min-w-40px">Chi tiết</th>
+                    <th class="min-w-40px">Ảnh</th>
+                    <th class="min-w-40px">Trạng thái</th>
+                    <th class="min-w-20px">Chỉnh sửa</th>
+                    <th class="min-w-40px">Biến thể</th>
                 </tr>
             </thead>
             <!--end::Table head-->
@@ -53,9 +53,9 @@
                     <td>{!! $item->description !!}</td>
                     <td><img src="{{ asset('uploads/' . $item->image) }}" height="80" width="80" /></td>
                     @if($item->status == 1)
-                    <td><a class="btn-status btn btn-primary text-btn" href="{{route('product.unactive', $item->id)}}">Active</a></td>
+                    <td><a class="btn-status btn btn-primary text-btn" href="{{route('product.unactive', $item->id)}}">Hiện</a></td>
                     @else
-                    <td><a class="btn-status btn btn-secondary text-btn" href="{{route('product.active', $item->id)}}">UnActive</a></td>
+                    <td><a class="btn-status btn btn-secondary text-btn" href="{{route('product.active', $item->id)}}">Ẩn</a></td>
                     @endif
                     <style>
                         .btn-status {
@@ -91,7 +91,7 @@
                             <!--end::Svg Icon-->
                         </a>
                     </td>
-                    <td><a class="btn btn-primary text-btn" href="{{route('admin.product.detail', $item->id)}}">Detail</a></td>
+                    <td><a class="btn btn-primary text-btn" href="{{route('admin.product.detail', $item->id)}}">BT</a></td>
                 </tr>
                 @endforeach
             </tbody>

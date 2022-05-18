@@ -106,17 +106,17 @@
                             <!--end::Menu separator-->
                             <!--begin::Menu item-->
                             <div class="menu-item px-5">
-                                <a href="../../demo1/dist/account/overview.html" class="menu-link px-5">My Profile</a>
+                                <a href="../../demo1/dist/account/overview.html" class="menu-link px-5">Thông tin tài khoản</a>
                             </div>
                             <!--end::Menu item-->
 
                             <div class="menu-item px-5 my-1">
-                                <a href="../../demo1/dist/account/settings.html" class="menu-link px-5">Account Settings</a>
+                                <a href="../../demo1/dist/account/settings.html" class="menu-link px-5">Cài đặt tài khoản</a>
                             </div>
                             <!--end::Menu item-->
                             <!--begin::Menu item-->
                             <div class="menu-item px-5">
-                                <a href="{{route('logout')}}" class="menu-link px-5">Sign Out</a>
+                                <a href="{{route('logout')}}" class="menu-link px-5">Đăng xuất</a>
                             </div>
                             <!--end::Menu item-->
                             <!--begin::Menu separator-->

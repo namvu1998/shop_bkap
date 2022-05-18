@@ -12,14 +12,14 @@
 			<thead>
 				<tr class="fw-bolder text-muted">
 					<th class="min-w-20px">Stt</th>
-					<th class="min-w-40px">Name</th>
+					<th class="min-w-40px">Tên</th>
 					{{-- <th class="min-w-40px">Full name</th> --}}
 					<th class="min-w-40px">Email</th>
-					<th class="min-w-40px">Phone</th>
-					<th class="min-w-40px">Address</th>
-					<th class="min-w-40px">Note</th>
-					<th class="min-w-40px">Status</th>
-					<th class="min-w-40px">Detail</th>
+					<th class="min-w-40px">SĐT</th>
+					<th class="min-w-40px">Địa chỉ</th>
+					<th class="min-w-40px">Ghi chú</th>
+					<th class="min-w-40px">Trạng thái</th>
+					<th class="min-w-40px">Chi tiết</th>
 				</tr>
 			</thead>
 			<!--end::Table head-->
@@ -46,7 +46,7 @@
 							<div>Hoàn trả</div>
 						@endif
 					</td>
-					<td><a class="btn btn-primary text-btn" href="{{route('orderDetail', $item->id)}}">Detail</a></td>
+					<td><a class="btn btn-primary text-btn" href="{{route('orderDetail', $item->id)}}">Chi tiết</a></td>
 				</tr>
 				@endforeach
 			</tbody>

@@ -38,4 +38,8 @@ class Product extends Model
     {
         return $this->hasMany(Product_variant::class);
     }
+    public function proCate()
+    {
+        return $this->belongsTo(Category::class,'category_id');
+    }
 }

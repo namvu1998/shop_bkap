@@ -135,11 +135,11 @@
         <div class="modal-dialog p-0" role="document">
             <div class="modal-content">
                 <div class="modal-body">
-                    <h2>Search Your Product</h2>
+                    <h2>Tìm sản phẩm</h2>
                     <form action="{{route('shop')}}" class="navbar-form position-relative" role="search">
                         @csrf
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search here..." name="key">
+                            <input type="text" class="form-control" placeholder="Tìm kiếm..." name="key">
                         </div>
                         <button type="submit" class="submit-btn"><i class="pe-7s-search"></i></button>
                     </form>

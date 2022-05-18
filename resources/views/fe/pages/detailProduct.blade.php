@@ -74,7 +74,7 @@
                             <span class="read-review"><a class="reviews" href="#">( 5 Customer Review )</a></span>
                         </div>
                         <div class="pro-details-color-info d-flex align-items-center">
-                            <span>Color</span>
+                            <span>Màu sắc</span>
                             <div class="pro-details-color">
                                 <ul>
                                     @foreach ($checkColorId as $item)
@@ -105,7 +105,7 @@
                         @enderror
                         <input type="hidden" name="size_id_input">
                         <div class="hung_qty"></div>
-                        <p class="m-0">{!!$detailProduct->description!!}</p>
+                        <p class="m-0">{!!$detailProduct->content!!}</p>
                         <div class="pro-details-quality">
                             <div class="cart-plus-minus">
                                 <div class="dec qtybutton">-</div>
@@ -114,7 +114,7 @@
                             </div>
                             @if($checkColorId && $checkSizeId)
                                 <div class="pro-details-cart">
-                                    <button class="add-cart" type="submit">Add cart</button>
+                                    <button class="add-cart" type="submit">Thêm vào giỏ hàng</button>
                                 </div>
                             @else 
                                 <div class="pro-details-cart">
@@ -129,7 +129,7 @@
                             </div>
                         </div>
                         <div class="pro-details-sku-info pro-details-same-style  d-flex">
-                            <span>SKU: </span>
+                            <span>Mã sản phẩm: </span>
                             <ul class="d-flex">
                                 <li>
                                     <a href="#">{{$detailProduct->shoe_code}}</a>
@@ -137,16 +137,16 @@
                             </ul>
                         </div>
                         <div class="pro-details-categories-info pro-details-same-style d-flex">
-                            <span>Categories: </span>
+                            <span>Danh mục: </span>
                             <ul class="d-flex">
                                 <li>
-                                    {{-- @dd($detailProduct->cate); --}}
-                                    <a href="#"></a>
+                                   
+                                    <a href="#">{{$detailProduct->proCate->name}} </a>
                                 </li>
                             </ul>
                         </div>
                         <div class="pro-details-social-info pro-details-same-style d-flex">
-                            <span>Share: </span>
+                            <span>Chia sẻ: </span>
                             <ul class="d-flex">
                                 <li>
                                     <a href="#"><i class="fa fa-facebook"></i></a>
@@ -178,18 +178,18 @@
     <div class="container">
         <div class="description-review-wrapper">
             <div class="description-review-topbar nav">
-                <a data-bs-toggle="tab" href="#des-details2">Information</a>
-                <a class="active" data-bs-toggle="tab" href="#des-details1">Description</a>
-                <a data-bs-toggle="tab" href="#des-details3">Reviews (02)</a>
+                <a data-bs-toggle="tab" href="#des-details2">Thông tin</a>
+                <a class="active" data-bs-toggle="tab" href="#des-details1">Mô tả</a>
+                <a data-bs-toggle="tab" href="#des-details3">Nhận xét (02)</a>
             </div>
             <div class="tab-content description-review-bottom">
                 <div id="des-details2" class="tab-pane">
                     <div class="product-anotherinfo-wrapper text-start">
                         <ul>
-                            <li><span>Weight</span> 400 g</li>
-                            <li><span>Dimensions</span>10 x 10 x 15 cm</li>
-                            <li><span>Materials</span> 60% cotton, 40% polyester</li>
-                            <li><span>Other Info</span> American heirloom jean shorts pug seitan letterpress</li>
+                            <li><span>Cân nặng</span> 400 </li>
+                            <li><span>Kích thướng</span>10 x 10 x 15 </li>
+                            <li><span>Vật liệu</span> 60% cotton, 40% polyester</li>
+                            <li><span>Thông tin khác</span> </li>
                         </ul>
                     </div>
                 </div>
@@ -319,7 +319,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="section-title text-center mb-30px0px line-height-1">
-                    <h2 class="title m-0">Related Products</h2>
+                    <h2 class="title m-0">Sản phẩm liên quan</h2>
                 </div>
             </div>
         </div>
@@ -333,15 +333,15 @@
                                 <img src="{{asset('uploads/' . $item->image)}}" alt="Product" />
                                 <img class="hover-image" src="{{asset('uploads/' . $item->image)}}" alt="Product" />
                                 <span class="badges">
-                                    <span class="new">New</span>
+                                    <span class="new">mới</span>
                                 </span>
                                 <div class="actions">
                                     <a href="wishlist.html" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
                                     <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
                                     <a href="compare.html" class="action compare" title="Compare"><i class="pe-7s-refresh-2"></i></a>
                                 </div>
-                                <button title="Add To Cart" class=" add-to-cart">Add
-                                    To Cart</button>
+                                {{-- <button title="Add To Cart" class=" add-to-cart">Add
+                                    To Cart</button> --}}
                         </div>
                         <div class="content">
                             <span class="ratings">

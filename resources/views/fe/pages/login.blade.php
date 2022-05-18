@@ -8,7 +8,7 @@
                 <h2 class="breadcrumb-title">Shop</h2>
                 <!-- breadcrumb-list start -->
                 <ul class="breadcrumb-list">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
                     <li class="breadcrumb-item active">Login</li>
                 </ul>
                 <!-- breadcrumb-list end -->
@@ -27,10 +27,10 @@
                 <div class="login-register-wrapper">
                     <div class="login-register-tab-list nav">
                         <a class="active" data-bs-toggle="tab" href="#lg1">
-                            <h4>login</h4>
+                            <h4>Đăng Nhập</h4>
                         </a>
                         <a data-bs-toggle="tab" href="#lg2">
-                            <h4>register</h4>
+                            <h4>Đăng ký</h4>
                         </a>
                     </div>
                     <div class="tab-content">
@@ -44,14 +44,14 @@
                                     <form action="{{route('loginUser')}}" method="post">
                                         @csrf
                                         <input type="text" name="email" placeholder="Email" />
-                                        <input type="password" name="password" placeholder="Password" />
+                                        <input type="password" name="password" placeholder="Mật khẩu" />
                                         <div class="button-box">
                                             <div class="login-toggle-btn">
                                                 <input type="checkbox" />
-                                                <a class="flote-none" href="javascript:void(0)">Remember me</a>
-                                                <a href="#">Forgot Password?</a>
+                                                <a class="flote-none" href="javascript:void(0)">Ghi nhớ</a>
+                                                <a href="#">Quên mật khẩu?</a>
                                             </div>
-                                            <button type="submit"><span>Login</span></button>
+                                            <button type="submit"><span>Đăng nhập</span></button>
                                         </div>
                                     </form>
                                 </div>
@@ -62,7 +62,7 @@
                                 <div class="login-register-form">
                                     <form action="{{route('register')}}" method="post">
                                         @csrf
-                                        <input type="text" name="name" placeholder="Username" value="{{old('name')}}" />
+                                        <input type="text" name="name" placeholder="Tên" value="{{old('name')}}" />
                                         @error('name')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
@@ -70,12 +70,12 @@
                                         @error('email')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
-                                        <input type="password" name="password" placeholder="Password" value="{{old('Password')}}" />
+                                        <input type="password" name="password" placeholder="Mật khẩu" value="{{old('Password')}}" />
                                         @error('password')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                         <div class="button-box">
-                                            <button type="submit"><span>Register</span></button>
+                                            <button type="submit"><span>Đăng ký</span></button>
                                         </div>
                                     </form>
                                 </div>

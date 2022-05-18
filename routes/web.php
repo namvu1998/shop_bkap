@@ -38,32 +38,31 @@ Route::get('/shop', [ShopController::class, 'index'])->name('shop');
 Route::get('/detail/product/{id}', [ShopController::class, 'detailProduct'])->name('product.detail');
 Route::post('/getSize', [ShopController::class, 'getSize']);
 Route::post('/getQty', [ShopController::class, 'getQty']);
-//Giỏ hàng
-Route::get('/cart', [CartController::class, 'index'])->name('cart');
 
-Route::post('/add-cart', [CartController::class, 'AddCart'])->name('AddCart');
-// Route::get('/add-cart/{id}', [CartController::class, 'AddCart'])->name('AddCart');
-// Route::get('/show-cart', [CartController::class, 'ShowCart'])->name('ShowCart');
-Route::post('/update-cart', [CartController::class, 'UpdateCart'])->name('UpdateCart');
-Route::get('/delete-cart/{id}', [CartController::class, 'DeleteCart'])->name('DeleteCart');
-Route::get('/clear-cart', [CartController::class, 'Clear'])->name('Clear');
-Route::get('/thanh-toan', [CartController::class, 'getFormPay'])->name('getFormPay');
-Route::post('/dat-hang', [CartController::class, 'getSaveInfo'])->name('getSaveInfo');
-Route::get('/thanh-cong', [CartController::class, 'thanhcong'])->name('thanhcong');
+
 //Giỏ hàng
 Route::group([
     'middleware' => ['check_login'],
 ], function () {
-    
-});
+    //Giỏ hàng
+    Route::get('/cart', [CartController::class, 'index'])->name('cart');
 
-//Checkout
-
-Route::prefix('checkout')->group(function () {
+    Route::post('/add-cart', [CartController::class, 'AddCart'])->name('AddCart');
+    // Route::get('/add-cart/{id}', [CartController::class, 'AddCart'])->name('AddCart');
+    // Route::get('/show-cart', [CartController::class, 'ShowCart'])->name('ShowCart');
+    Route::post('/update-cart', [CartController::class, 'UpdateCart'])->name('UpdateCart');
+    Route::get('/delete-cart/{id}', [CartController::class, 'DeleteCart'])->name('DeleteCart');
+    Route::get('/clear-cart', [CartController::class, 'Clear'])->name('Clear');
+    Route::prefix('checkout')->group(function () {
     Route::get('/', [CheckoutController::class, 'index'])->name('checkout');
     Route::post('/', [CheckoutController::class, 'create'])->name('order.create');
    
 });
+});
+
+//Checkout
+
+
 
 
 //blog
@@ -83,7 +82,7 @@ Route::post('/login-user', [AuthController::class, 'loginUser'])->name('loginUse
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 //Trang Admin
-Route::group(['middleware' => 'check_login'], function () {
+
     Route::group(['middleware' => 'check_admin'], function () {
         Route::prefix('admin')->group(function () {
             Route::get('/', [HomeController::class, 'index'])->name('admin.index');
@@ -134,4 +133,4 @@ Route::group(['middleware' => 'check_login'], function () {
             });
         });
     });
-});
+

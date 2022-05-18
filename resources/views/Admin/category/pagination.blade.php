@@ -6,11 +6,11 @@
             <div class="container-fluid">
               
                 <a  href="{{route('admin.category.create')}}" class="btn btn-sm btn-primary" id="kt_toolbar_primary_button">
-                    Create
+                    Thêm mới
                 </a>
               <form class="d-flex">
-                <input class="form-control me-2" name="key" type="search" placeholder="Search" aria-label="Search">
-                <input class="btn btn-outline-success" value="ok" type="submit">
+                <input class="form-control me-2" name="key" type="search" placeholder="Tìm kiếm" aria-label="Search">
+                <input class="btn btn-outline-success" value="Tìm" type="submit">
               </form>
             </div>
           </nav>
@@ -25,10 +25,10 @@
             <!--begin::Table head-->
             <thead>
                 <tr class="fw-bolder text-muted">
-                    <th class="min-w-30px">ID</th>
-                    <th class="min-w-100px">Name</th>
-                    <th class="min-w-40px">Status</th>
-                    <th class="min-w-100px">Actions</th>
+                    <th class="min-w-30px">STT</th>
+                    <th class="min-w-100px">Danh mục</th>
+                    <th class="min-w-40px">Trạng Thái</th>
+                    <th class="min-w-100px">Chỉnh sửa</th>
                 </tr>
             </thead>
             <!--end::Table head-->
@@ -39,9 +39,9 @@
                         <td>{{$loop->iteration}}</td>
                         <td>{{$item->name}}</td>
                         @if($item->status == 1)
-                            <td class="btn-status btn btn-primary"><a class="text-btn" href="{{route('cate.unactive', $item->id)}}">Active</a></td>
+                            <td class="btn-status btn btn-primary"><a class="text-btn" href="{{route('cate.unactive', $item->id)}}">Hiện</a></td>
                         @else
-                            <td class="btn-status btn btn-secondary"><a class="text-btn" href="{{route('cate.active',$item->id)}}">UnActive</a></td>
+                            <td class="btn-status btn btn-secondary"><a class="text-btn" href="{{route('cate.active',$item->id)}}">Ẩn</a></td>
                         @endif
                         <style>
                             .btn-status{

@@ -2,22 +2,21 @@
 @section('content')
 <div class="container">
     <nav class="navbar navbar-expand-sm fs-1 fw-bold">
-        Create Category
+        Thêm mới danh mục
     </nav>
     <form action="" method="POST" role="form">
         @csrf
         <div class="mb-3">
-            <label for="" class="form-label">Name</label>
+            <label for="" class="form-label">Danh mục</label>
             <input type="text"
             class="form-control @error('name') is-invalid @enderror" name="name" id="" aria-describedby="helpId" value="{{old('name')}}">
             @error('name')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-            <small id="helpId" class="form-text text-muted">Help text</small>
         </div>
 
         <div class="mb-3">
-            <label for="" class="form-label">Status</label> <br>
+            <label for="" class="form-label">Trạng thái</label> <br>
                 <div class="form-check form-check-inline">
                     <label class="form-check-label">
                         <input class="form-check-input" type="radio" name="status" id="status" value="0" >

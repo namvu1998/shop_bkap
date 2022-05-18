@@ -6,7 +6,7 @@
         <nav class="navbar navbar-light bg-light">
             <div class="container-fluid">
                 <a href="{{route('admin.product.createDetail',$id)}}" class="btn btn-sm btn-primary" id="kt_toolbar_primary_button">
-                    CreateDetail
+                    Thêm mới
                 </a>
             </div>
         </nav>
@@ -21,11 +21,11 @@
             <!--begin::Table head-->
             <thead>
                 <tr class="fw-bolder text-muted">
-                    <th class="min-w-20px">ID</th>
-                    <th class="min-w-40px">Color</th>
+                    <th class="min-w-20px">STT</th>
+                    <th class="min-w-40px">Màu</th>
                     <th class="min-w-40px">Size</th>
-                    <th class="min-w-40px">Quantity</th>
-                    <th class="min-w-20px">Actions</th>
+                    <th class="min-w-40px">Số lượng</th>
+                    <th class="min-w-20px">Chỉnh sửa</th>
                 </tr>
             </thead>
             <!--end::Table head-->
@@ -33,7 +33,7 @@
             <tbody>
                 @foreach ($product_details as $item)
                 <tr>
-
+                    {{-- @dd($item->id); --}}
                     <td>{{$loop->iteration}}</td>
                     <td>
                         <div class="box-color" style="background:{{$item->attr_color->value}}"></div>

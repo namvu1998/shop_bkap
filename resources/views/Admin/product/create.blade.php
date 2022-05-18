@@ -2,49 +2,48 @@
 @section('content')
 <div class="container">
     <nav class="navbar navbar-expand-sm fs-1 fw-bold">
-        Create Product
+        Thêm mới sản phẩm
     </nav>
     <form action="" method="POST" role="form" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
-            <label for="" class="form-label">Name</label>
+            <label for="" class="form-label">Tên sản phẩm</label>
             <input type="text" class="form-control " name="name" id="name" aria-describedby="helpId" value="{{old('name')}}" onkeyup="ChangeToSlug()">
             @error('name')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-            <small id="helpId" class="form-text text-muted">Help text</small>
         </div>
 
         <div class="mb-3">
-            <label for="" class="form-label">Slug (đường dẫn chuẩn seo)</label>
+            <label for="" class="form-label">Đường dẫn chuẩn seo</label>
             <input type="text" class="form-control " name="sl" id="slug" aria-describedby="helpId" value="{{old('sl')}}">
             @error('slug')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-            <small id="helpId" class="form-text text-muted">Help text</small>
+            
         </div>
 
         <div class="mb-3">
-            <label for="" class="form-label">Price</label>
+            <label for="" class="form-label">Giá</label>
             <input type="text" class="form-control" name="price" id="" aria-describedby="helpId" value="{{old('price')}}">
             @error('price')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-            <small id="helpId" class="form-text text-muted">Help text</small>
+        
         </div>
 
         <div class="mb-3">
-            <label for="" class="form-label">Sale price</label>
+            <label for="" class="form-label">Khuyến mãi</label>
             <input type="text" class="form-control" name="sale_price" id="" aria-describedby="helpId" value="{{old('sale_price')}}">
             @error('sale_price')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-            <small id="helpId" class="form-text text-muted">Help text</small>
+            
         </div>
 
         <div class="mb-3">
             <div class="mb-3">
-                <label class="form-label">Category</label>
+                <label class="form-label">Danh mục</label>
                 <select class="form-control" id="inputName" name="category_id">
                     @foreach($categories as $item)
                     <option value="{{$item->id}}" default>{{$item->name}}</option>
@@ -55,89 +54,66 @@
         </div>
 
         <div class="mb-3">
-            <label for="" class="form-label">Avatar</label>
+            <label for="" class="form-label">Ảnh đại diện</label>
             <input type="file" class="form-control " name="file" id="" aria-describedby="helpId">
             @error('image')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-            <small id="helpId" class="form-text text-muted">Help text</small>
+           
         </div>
 
         <div class="mb-3">
-            <label for="" class="form-label">Image</label>
+            <label for="" class="form-label">Ảnh mô tả</label>
             <input type="file" class="form-control " name="files[]" multiple id="" aria-describedby="helpId">
             @error('files')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-            <small id="helpId" class="form-text text-muted">Help text</small>
+            
         </div>
 
         <div class="mb-3">
-            <label for="" class="form-label">Content</label>
+            <label for="" class="form-label">Mô tả</label>
             <input type="text" class="form-control" name="content" id="" aria-describedby="helpId" value="{{old('content')}}">
             @error('content')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-            <small id="helpId" class="form-text text-muted">Help text</small>
+           
         </div>
 
         <div class="mb-3">
-            <label for="" class="form-label">Description</label>
+            <label for="" class="form-label">Chi tiết</label>
             <textarea type="text" class="form-control" name="description" id="description" aria-describedby="helpId" value="{{old('description')}}">
             </textarea>
             @error('description')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-            <small id="helpId" class="form-text text-muted">Help text</small>
+           
         </div>
 
         <div class="mb-3">
-            <label for="" class="form-label">Shoe code</label>
+            <label for="" class="form-label">Mã sản phẩm</label>
             <input type="text" class="form-control" name="shoe_code" id="" aria-describedby="helpId" value="{{old('shoe_code')}}">
             @error('shoe_code')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-            <small id="helpId" class="form-text text-muted">Help text</small>
+            
         </div>
 
-
-        {{-- <div class="mb-3">
-            <label for="" class="form-label">Color</label>
-            @foreach($attribute_color as $data)
-                <div class="form-check" style="margin-bottom:1rem !important">
-                    <input type="checkbox" name='color[]' class="form-check-input" id="exampleCheck1" value="{{$data->id}}">
-        <label class="form-check-label" for="exampleCheck1">
-            <div style="width:50px; height:20px; background:{{$data->value}}"></div>
-        </label>
-</div>
-@endforeach
-</div>
-
-<div class="mb-3">
-    <label for="" class="form-label">Size</label>
-    @foreach($attribute_size as $data)
-    <div class="form-check" style="margin-bottom:1rem !important">
-        <input type="checkbox" name='size[]' class="form-check-input" id="exampleCheck1" value="{{$data->id}}">
-        <label class="form-check-label" for="exampleCheck1"> {{$data->value}}</label>
-    </div>
-    @endforeach
-</div> --}}
-
-<div class="mb-3">
-    <label for="" class="form-label">Status</label> <br>
-    <div class="form-check form-check-inline">
-        <label class="form-check-label">
-            <input class="form-check-input" type="radio" name="status" id="status" value="0">
-            Ẩn
-        </label>
-    </div>
-    <div class="form-check form-check-inline">
-        <label class="form-check-label">
-            <input class="form-check-input" type="radio" name="status" id="status" value="1" checked="checked">
-            Hiện
-        </label>
-    </div>
-</div>
+        <div class="mb-3">
+            <label for="" class="form-label">Trạng thái</label> <br>
+            <div class="form-check form-check-inline">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="status" id="status" value="0">
+                    Ẩn
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="status" id="status" value="1" checked="checked">
+                    Hiện
+                </label>
+            </div>
+        </div>
 
 
 <button type="submit" class="btn btn-primary">Thực hiện</button>

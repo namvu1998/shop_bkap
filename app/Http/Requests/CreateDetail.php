@@ -29,6 +29,17 @@ class CreateDetail extends FormRequest
                 return $query->where('size_id', $this->size_id)
                             ->where('product_id', $this->id);
             })],
+            'size_id' => 'required',
+            'quantity' => 'required|integer',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'color_id.required' => 'Không được để trống trường này!',
+            'size_id.required' => 'Không được để trống trường này!',
+            'quantity.required' => 'Không được để trống trường này!',
+            'quantity.integer' => 'Giá phải là số dương',
         ];
     }
 }

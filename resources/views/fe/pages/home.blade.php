@@ -130,8 +130,8 @@
                         <img src="{{url('assets')}}/images/icons/1.png" alt="">
                     </div>
                     <div class="feature-content">
-                        <h4 class="title">Free Shipping</h4>
-                        <span class="sub-title">Capped at $39 per order</span>
+                        <h4 class="title">Miễn phí giao hàng</h4>
+                        <span class="sub-title">Giá trị đơn hàng trên 500000vnd</span>
                     </div>
                 </div>
             </div>
@@ -142,8 +142,8 @@
                         <img src="{{url('assets')}}/images/icons/2.png" alt="">
                     </div>
                     <div class="feature-content">
-                        <h4 class="title">Card Payments</h4>
-                        <span class="sub-title">12 Months Installments</span>
+                        <h4 class="title">Thanh toán bằng thẻ</h4>
+                        <span class="sub-title">Trả góp 12 tháng</span>
                     </div>
                 </div>
             </div>
@@ -154,8 +154,8 @@
                         <img src="{{url('assets')}}/images/icons/3.png" alt="">
                     </div>
                     <div class="feature-content">
-                        <h4 class="title">Easy Returns</h4>
-                        <span class="sub-title">Shop With Confidence</span>
+                        <h4 class="title">Trả hàng dễ dàng</h4>
+                        <span class="sub-title">Tự tin mua sắm</span>
                     </div>
                 </div>
                 <!-- single item -->
@@ -173,7 +173,7 @@
             <!-- Section Title Start -->
             <div class="col-lg col-md col-12">
                 <div class="section-title mb-0">
-                    <h2 class="title">#products</h2>
+                    <h2 class="title"># Sản phẩm</h2>
                 </div>
             </div>
             <!-- Section Title End -->
@@ -181,11 +181,10 @@
             <!-- Tab Start -->
             <div class="col-lg-auto col-md-auto col-12">
                 <ul class="product-tab-nav nav">
-                    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#tab-product-all">All</a></li>
-                    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#tab-product-new">New</a>
+                    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#tab-product-all">Tất cả</a></li>
+                    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#tab-product-new">Mới</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#tab-product-itemssale">Items
-                            Sale</a></li>
+                    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#tab-product-itemssale">Khuyến mãi</a></li>
                 </ul>
             </div>
             <!-- Tab End -->
@@ -211,7 +210,7 @@
                                             @if($item->sale_price)
                                                 <span class="sale">-{{$item->sale_price}}</span>
                                             @endif
-                                            <span class="new">New</span>
+                                            <span class="new">Mới</span>
                                         </span>
                                         <div class="actions">
                                             <a href="wishlist.html" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
@@ -225,7 +224,7 @@
                                             <span class="rating-wrap">
                                                 <span class="star" style="width: 100%"></span>
                                             </span>
-                                            <span class="rating-num">( 5 Review )</span>
+                                            <span class="rating-num">( 5 Nhận xét )</span>
                                         </span>
                                         <h5 class="title">
                                             <a href="{{route('product.detail',$item->id)}}">{{$item->name}}
@@ -267,7 +266,7 @@
                                             @if($item->sale_price)
                                                 <span class="sale">-{{$item->sale_price}}</span>
                                             @endif
-                                            <span class="new">New</span>
+                                            <span class="new">Mới</span>
                                         </span>
                                         <div class="actions">
                                             <a href="wishlist.html" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
@@ -282,7 +281,7 @@
                                             <span class="rating-wrap">
                                                 <span class="star" style="width: 100%"></span>
                                             </span>
-                                            <span class="rating-num">( 5 Review )</span>
+                                            <span class="rating-num">( 5 Nhận xét )</span>
                                         </span>
                                         <h5 class="title">
                                             <a href="single-product.html">{{$item->name}}
@@ -320,7 +319,7 @@
                                             @if($item->sale_price)
                                                 <span class="sale">-{{$item->sale_price}}</span>
                                             @endif
-                                            <span class="new">New</span>
+                                            <span class="new">Mới</span>
                                         </span>
                                         <div class="actions">
                                             <a href="wishlist.html" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
@@ -335,7 +334,7 @@
                                             <span class="rating-wrap">
                                                 <span class="star" style="width: 100%"></span>
                                             </span>
-                                            <span class="rating-num">( 5 Review )</span>
+                                            <span class="rating-num">( 5 Nhận xét )</span>
                                         </span>
                                         <h5 class="title">
                                             <a href="single-product.html">{{$item->name}}
@@ -370,13 +369,13 @@
             <div class="col-12">
                 <div class="deal-inner deal-bg position-relative pt-100px pb-100px" data-bg-image="{{url('assets')}}/images/deal-img/deal-bg.jpg">
                     <div class="deal-wrapper">
-                        <span class="category">#FASHION SHOP</span>
-                        <h3 class="title">Deal Of The Day</h3>
+                        <span class="category">#Cửa hàng</span>
+                        <h3 class="title">Ưu đãi trong ngày</h3>
                         <div class="deal-timing">
                             <div data-countdown="2021/05/15"></div>
                         </div>
-                        <a href="single-product-variable.html" class="btn btn-lg btn-primary btn-hover-dark m-auto"> Shop
-                            Now <i class="fa fa-shopping-basket ml-15px" aria-hidden="true"></i></a>
+                        <a href="single-product-variable.html" class="btn btn-lg btn-primary btn-hover-dark m-auto"> MUA NGAY
+                         <i class="fa fa-shopping-basket ml-15px" aria-hidden="true"></i></a>
                     </div>
                     <div class="deal-image">
                         <img class="img-fluid" src="{{url('assets')}}/images/deal-img/woman.png" alt="">
@@ -394,7 +393,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="section-title text-center mb-0">
-                    <h2 class="title line-height-1">#testimonials</h2>
+                    <h2 class="title line-height-1"># bình luận</h2>
                 </div>
             </div>
         </div>

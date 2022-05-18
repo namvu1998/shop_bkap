@@ -7,7 +7,7 @@
     <form action="" method="POST" role="form">
         @csrf
         <div class="mb-3">
-            <label for="" class="form-label">Color</label>
+            <label for="" class="form-label">Màu</label>
             @foreach($attribute_color as $data)
             <div class="form-check" style="margin-bottom:1rem !important">
                 <input type="radio" name='color_id' class="form-check-input" id="exampleCheck1" @if($data->value == $color_id)checked @endif value="{{$data->id}}">
@@ -32,13 +32,13 @@
         </div>
 
         <div class="mb-3">
-            <label for="" class="form-label">Quantity</label>
+            <label for="" class="form-label">Số lượng</label>
             <input type="text" class="form-control " name="quantity" id="" aria-describedby="helpId" value="{{$attribute->quantity}}">
             <small id="helpId" class="form-text text-muted">Help text</small>
         </div>
-
+        <input type="hidden" class="form-control " name="product_id" id="" aria-describedby="helpId" value="{{$attribute->product_id}}">
         <button type="submit" class="btn btn-primary">Thực hiện</button>
-        <a class="btn btn-warning" href="{{route('admin.category.index')}}">Quay lại</a>
+        <a class="btn btn-warning" href="{{route('admin.product.detail', $attribute->product_id)}}">Quay lại</a>
 
     </form>
 

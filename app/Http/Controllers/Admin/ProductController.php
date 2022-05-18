@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateDetail;
 use App\Http\Requests\CreateProduct;
+use App\Http\Requests\UpdateProduct;
 use App\Http\Requests\UpdateVariant;
 use App\Models\Attribute;
 use App\Models\AttributeValue;
@@ -106,7 +107,7 @@ class ProductController extends Controller
         }
     }
 
-    public function update($id, Request $request)
+    public function update($id, UpdateProduct $request)
     {
         try {
             $product = Product::find($id);
@@ -182,7 +183,7 @@ class ProductController extends Controller
         try {
             $attribute_color = Attribute::where('name', 'color')->get();
             $attribute_size = Attribute::where('name', 'size')->get();
-            return view('admin.product.createDetail', compact('attribute_color', 'attribute_size'));
+            return view('admin.product.createDetail', compact('attribute_color', 'attribute_size','id'));
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -208,6 +209,7 @@ class ProductController extends Controller
     {
         try {
             $attribute = Product_variant::find($id);
+            $product_id = $attribute->product_id;
             $attribute_color = Attribute::where('name', 'color')->get();
             $attribute_size = Attribute::where('name', 'size')->get();
             $color_id = DB::table('product_variants')
@@ -224,7 +226,7 @@ class ProductController extends Controller
             foreach ($size_id as $size_id1) {
                 $size_id = $size_id1->value;
             }
-            return view('admin.product.editDetail', compact('attribute_color', 'attribute_size', 'attribute', 'color_id', 'size_id'));
+            return view('admin.product.editDetail', compact('attribute_color', 'attribute_size', 'attribute', 'color_id', 'size_id','product_id'));
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -233,13 +235,13 @@ class ProductController extends Controller
     public function updateDetail(UpdateVariant $request, $id)
     {
         try {
+           
             Product_variant::find($id)->update([
-                'product_id' => $id,
                 'color_id' => $request->color_id,
                 'size_id' => $request->size_id,
                 'quantity' => $request->quantity,
             ]);
-            return redirect()->route('admin.product.detail', ['id' => $id])->with('success', 'Cập nhật biến thể thành công.');
+            return redirect()->route('admin.product.detail', $request->product_id)->with('success', 'Cập nhật biến thể thành công.');
         } catch (\Throwable $th) {
             throw $th;
         }

@@ -27,7 +27,7 @@
 <!-- Cart Area Start -->
 <div class="cart-main-area pt-100px pb-100px">
     <div class="container">
-        <h3 class="cart-page-title">Your cart items</h3>
+        <h3 class="cart-page-title">Giỏ hàng của bạn</h3>
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                 <form action="{{route('UpdateCart')}}" method="POST">
@@ -36,15 +36,15 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th>#stt</th>
-                                    <th>Image</th>
-                                    <th>Product Name</th>
-                                    <th>Until Price</th>
-                                    <th>Qty</th>
-                                    <th>Color</th>
+                                    <th>Stt</th>
+                                    <th>Ảnh</th>
+                                    <th>Sản phẩm</th>
+                                    <th>Giá</th>
+                                    <th>Số lượng</th>
+                                    <th>Màu</th>
                                     <th>Size</th>
-                                    <th>Total</th>
-                                    <th>Delete</th>
+                                    <th>Tổng giá</th>
+                                    <th>Xóa</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -86,14 +86,14 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12"><br>
-                            <h4>Tong tien: {{number_format($sub_total)}} vnd</h4>
+                            {{-- <h4>Tong tien: {{number_format($sub_total)}} vnd</h4> --}}
                             <div class="cart-shiping-update-wrapper">
                                 <div class="cart-shiping-update">
-                                    <a href="#">Continue Shopping</a>
+                                    <a href="{{route('shop')}}">Quay lại cửa hàng</a>
                                 </div>
                                 <div class="cart-clear">
-                                    <button type="submit">Update Shopping Cart</button>
-                                    <a href="{{route('Clear')}}">Clear Shopping Cart</a>
+                                    <button type="submit">Update giỏ hàng</button>
+                                    <a href="{{route('Clear')}}">Xóa hết giỏ hàng</a>
                                 </div>
                             </div>
                         </div>
@@ -146,13 +146,13 @@
                     <div class="col-lg-6 col-md-6 mb-lm-30px">
                         <div class="discount-code-wrapper">
                             <div class="title-wrap">
-                                <h4 class="cart-bottom-title section-bg-gray">Use Coupon Code</h4>
+                                <h4 class="cart-bottom-title section-bg-gray">Mã khuyến mãi</h4>
                             </div>
                             <div class="discount-code">
-                                <p>Enter your coupon code if you have one.</p>
+                                <p>Nhập giá khuyến mãi nếu có</p>
                                 <form>
                                     <input type="text" required="" name="name" />
-                                    <button class="cart-btn-2" type="submit">Apply Coupon</button>
+                                    <button class="cart-btn-2" type="submit">Áp dụng</button>
                                 </form>
                             </div>
                         </div>
@@ -160,7 +160,7 @@
                     <div class="col-lg-6 col-md-12 mt-md-30px">
                         <div class="grand-totall">
                             <div class="title-wrap">
-                                <h4 class="cart-bottom-title section-bg-gary-cart">Cart Total</h4>
+                                <h4 class="cart-bottom-title section-bg-gary-cart">Đơn hàng</h4>
                             </div>
                             @foreach($cart->items as $key => $product)
                             <?php $total = ($product['price'] - $product['sale_price']) * $product['quantity'] ?>
@@ -178,8 +178,8 @@
                             
                                
                             </div> --}}
-                            <h4 class="grand-totall-title">Grand Total <span>{{number_format($sub_total)}} vnd</span></h4>
-                            <a href="{{route('checkout')}}">Proceed to Checkout</a>
+                            <h4 class="grand-totall-title">Tổng giá <span>{{number_format($sub_total)}} vnd</span></h4>
+                            <a href="{{route('checkout')}}">Đến thanh toán</a>
                         </div>
                     </div>
                 </div>

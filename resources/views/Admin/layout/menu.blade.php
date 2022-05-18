@@ -57,7 +57,7 @@
 												</span>
 												<!--end::Svg Icon-->
 											</span>
-											<span class="menu-title">Order</span>
+											<span class="menu-title">Đơn hàng</span>
 										</a>
 									</div>
 									<div class="menu-item">
@@ -75,7 +75,7 @@
 												</span>
 												<!--end::Svg Icon-->
 											</span>
-											<span class="menu-title">Products</span>
+											<span class="menu-title">Sản phẩm</span>
 										</a>
 									</div>
 									<div class="menu-item">
@@ -90,7 +90,7 @@
 												</span>
 												<!--end::Svg Icon-->
 											</span>
-											<span class="menu-title">Category</span>
+											<span class="menu-title">Danh mục</span>
 										</a>
 									</div>	
 									<div class="menu-item">
@@ -105,7 +105,7 @@
 												</span>
 												<!--end::Svg Icon-->
 											</span>
-											<span class="menu-title">Attribute</span>
+											<span class="menu-title">Thuộc tính</span>
 										</a>
 									</div>
 									{{-- <div class="menu-item">

@@ -3,7 +3,7 @@
 <div class="container">
     <div style="display:flex; justify-content: end;">
         <a href="{{route('admin.attribute.index')}}" class="btn btn-sm btn-primary" id="kt_toolbar_primary_button">
-            Update
+            Sửa thuộc tính
         </a>
    </div>
     <form action="{{route('admin.attributeValue.edit',$id)}}" method="post" >

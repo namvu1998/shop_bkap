@@ -7,7 +7,7 @@
        </div> --}}
        <div style="display:flex; justify-content: end;">
         <a href="{{route('admin.attributeValue.create')}}" class="btn btn-sm btn-primary" id="kt_toolbar_primary_button">
-            Create
+            Thêm mới
         </a>
    </div>
       
@@ -15,10 +15,10 @@
             <!--begin::Table head-->
             <thead>
                 <tr class="fw-bolder text-muted">
-                    <th class="min-w-30px">ID</th>
-                    <th class="min-w-100px">Name</th>
-                    <th class="min-w-40px">Value</th>
-                    <th class="min-w-100px">Actions</th>
+                    <th class="min-w-30px">STT</th>
+                    <th class="min-w-100px">Thuộc tính</th>
+                    <th class="min-w-40px">Giá trị</th>
+                    <th class="min-w-100px">Chỉnh sửa</th>
                 </tr>
             </thead>
             <!--end::Table head-->
@@ -27,7 +27,7 @@
                 @foreach ($attribute as $item)
                     <tr>
                         <td>{{$loop->iteration}}</td>
-                        <td>{{$item->name}}</td>
+                        <td>{{$item->name == 'color' ? 'Màu' : 'Size'}}</td>
                         <td> 
                             @if($item->name=='color')
                                 <div style ="width:30px; height:30px;border-radius: 50%; background:{{$item->value}}"></div>

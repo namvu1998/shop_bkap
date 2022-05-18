@@ -1,68 +1,74 @@
 @extends('admin.master')
 @section('content')
 <div class="container">
-    <h5>Ảnh chi tiết</h5>
     @if(count($products->images)>0)
+    <h5>Ảnh chi tiết</h5>
+    <div style="display: flex">
     @foreach($products->images as $item)
-    <form action="/admin/product/files/{{$item->id}}">
-        @csrf
-        <button class="btn text-danger">X</button>
-        <br>
-        @csrf
-        @method('delete')
-    </form>
-    <br>
-    <div class="row">
-        <div class="col-md-3">
-            <img src="{{asset('uploads2/' . $item->images)}}" width="150px" height="150px" alt="">
-        </div>
+    
+        <form action="/admin/product/files/{{$item->id}}">
+            @csrf
+                <button class="btn text-danger">X</button>
+                <br>
+            @csrf
+            @method('delete')
+        </form>
+            <br>
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="{{asset('uploads/'. $item->images)}}" width="150px" height="150px" alt="">
+                </div>
+            </div>
+        
+        @endforeach
     </div>
-    @endforeach
-    @endif
+        @endif
+   
+   
     <nav class="navbar navbar-expand-sm fs-1 fw-bold">
-        Create Product
+        Sửa sản phẩm
     </nav>
     <form action="" method="POST" role="form" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
-            <label for="" class="form-label">Name</label>
+            <label for="" class="form-label">Tên sản phẩm</label>
             <input type="text" class="form-control " name="name" id="name" aria-describedby="helpId" value="{{$products->name}}" onkeyup="ChangeToSlug()">
             @error('name')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-            <small id="helpId" class="form-text text-muted">Help text</small>
+            
         </div>
 
         <div class="mb-3">
-            <label for="" class="form-label">Slug (đường dẫn chuẩn seo)</label>
+            <label for="" class="form-label">Đường dẫn chuẩn seo</label>
             <input type="text" class="form-control " name="sl" id="slug" aria-describedby="helpId" value="{{$products->slug}}">
             @error('slug')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-            <small id="helpId" class="form-text text-muted">Help text</small>
+            
         </div>
 
         <div class="mb-3">
-            <label for="" class="form-label">Price</label>
+            <label for="" class="form-label">Giá bán</label>
             <input type="text" class="form-control" name="price" id="" aria-describedby="helpId" value="{{$products->price}}">
             @error('price')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-            <small id="helpId" class="form-text text-muted">Help text</small>
+            
         </div>
 
         <div class="mb-3">
-            <label for="" class="form-label">Sale price</label>
+            <label for="" class="form-label">Khuyến mãi</label>
             <input type="text" class="form-control" name="sale_price" id="" aria-describedby="helpId" value="{{$products->sale_price}}">
             @error('sale_price')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-            <small id="helpId" class="form-text text-muted">Help text</small>
+            
         </div>
 
         <div class="mb-3">
             <div class="mb-3">
-                <label class="form-label">Category</label>
+                <label class="form-label">Danh mục</label>
                 <select class="form-control" id="inputName" name="category_id">
                     @foreach($categories as $item)
                     <option value="{{$item->id}}" {{$item->id == $products->category_id ? 'selected' : ''}}>{{$item->name}}</option>
@@ -73,59 +79,59 @@
         </div>
 
         <div class="mb-3">
-            <label for="" class="form-label">Avatar</label>
+            <label for="" class="form-label">Ảnh đại diện</label>
             <input type="file" class="form-control " name="file" id="" aria-describedby="helpId"><br>
             <img src="{{asset('uploads/' . $products->image)}}" alt="">
             @error('image')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-            <small id="helpId" class="form-text text-muted">Help text</small>
+            
         </div>
 
         <div class="mb-3">
-            <label for="" class="form-label">Image</label>
+            <label for="" class="form-label">Ảnh chi tiết</label>
             <input type="file" class="form-control " name="files[]" multiple id="" aria-describedby="helpId">
             <br>
             <div>
                 @if(count($products->images)>0)
                 @foreach($products->images as $item)
-                <img src="{{asset('uploads2/' . $item->images)}}" width="150px" height="150px" alt="">
+                <img src="{{asset('uploads/' . $item->images)}}" width="150px" height="150px" alt="">
                 @endforeach
                 @endif
             </div>
             @error('files')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-            <small id="helpId" class="form-text text-muted">Help text</small>
+            
         </div>
 
         <div class="mb-3">
-            <label for="" class="form-label">Content</label>
+            <label for="" class="form-label">Mô tả</label>
             <input type="text" class="form-control" name="content" id="" aria-describedby="helpId" value="{{$products->content}}">
             @error('content')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-            <small id="helpId" class="form-text text-muted">Help text</small>
+            
         </div>
 
         <div class="mb-3">
-            <label for="" class="form-label">Description</label>
+            <label for="" class="form-label">Chi tiết</label>
             <textarea type="text" class="form-control" name="description" id="description" aria-describedby="helpId" value="">
             {{$products->description}}
             </textarea>
             @error('description')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-            <small id="helpId" class="form-text text-muted">Help text</small>
+            
         </div>
 
         <div class="mb-3">
-            <label for="" class="form-label">Shoe code</label>
+            <label for="" class="form-label">Mã sản phẩm</label>
             <input type="text" class="form-control" name="shoe_code" id="" aria-describedby="helpId" value="{{$products->shoe_code}}">
             @error('shoe_code')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-            <small id="helpId" class="form-text text-muted">Help text</small>
+            
         </div>
 
 
@@ -152,7 +158,7 @@
 </div> --}}
 
 <div class="mb-3">
-    <label for="" class="form-label">Status</label> <br>
+    <label for="" class="form-label">Trạng thái</label> <br>
     <div class="form-check form-check-inline">
         <label class="form-check-label">
             <input class="form-check-input" type="radio" name="status" id="status" value="0">

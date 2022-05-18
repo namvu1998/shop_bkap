@@ -11,11 +11,11 @@
                 <div class="col align-self-center d-none d-lg-block">
                     <div class="main-menu">
                         <ul>
-                            <li class="dropdown"><a href="{{route('home')}}">Home</a></li>
-                            <li class="dropdown "><a href="{{route('shop')}}">Shop</a></li>
-                            <li class="dropdown "><a href="{{route('blog')}}">Blog</a></li>
-                            <li class="dropdown "><a href="{{route('about')}}">About us</a></li>
-                            <li class="dropdown "><a href="{{route('contact')}}">Contact us</a></li>
+                            <li class="dropdown"><a href="{{route('home')}}">Trang chủ</a></li>
+                            <li class="dropdown "><a href="{{route('shop')}}">Cửa Hàng</a></li>
+                            <li class="dropdown "><a href="{{route('blog')}}">Tin tức</a></li>
+                            <li class="dropdown "><a href="{{route('about')}}">Thông tin</a></li>
+                            <li class="dropdown "><a href="{{route('contact')}}">Liên Hệ</a></li>
                         </ul>
                     </div>
                 </div>
@@ -25,7 +25,7 @@
                         @auth
                         <a href="{{route('logout')}}" class="header-action-btn login-btn" >{{Auth::user()->name}}</a>
                         @else
-                        <a href="{{route('signin')}}" class="header-action-btn login-btn" >Sign In</a>
+                        <a href="{{route('signin')}}" class="header-action-btn login-btn" >Đăng Nhập</a>
                         @endauth
                         <!-- Single Wedge Start -->
                         <a href="#" class="header-action-btn" data-bs-toggle="modal" data-bs-target="#searchActive">
@@ -141,8 +141,8 @@
             </div>
             <div class="foot">
                 <div class="buttons mt-30px">
-                    <a href="cart.html" class="btn btn-dark btn-hover-primary mb-30px">view cart</a>
-                    <a href="checkout.html" class="btn btn-outline-dark current-btn">checkout</a>
+                    <a href="{{route('cart')}}" class="btn btn-dark btn-hover-primary mb-30px">Giỏ hàng</a>
+                    <a href="{{route('checkout')}}" class="btn btn-outline-dark current-btn">Thanh toán</a>
                 </div>
             </div>
         </div>
